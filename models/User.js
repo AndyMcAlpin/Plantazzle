@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../config/connection')
 
-const { STRING, INTEGER } = DataTypes
+const { STRING, INTEGER, DATETIME } = DataTypes
 
 class User extends Model {
   static include = {}
@@ -18,7 +18,7 @@ class User extends Model {
    * @returns {Promise<Array<User>>}
    */
   static all() {
-    return this.findAll({ ...this.include })
+    return this.findAll({ where: { deleted_at: null }, ...this.include })
   }
 
   /**
@@ -27,7 +27,7 @@ class User extends Model {
    * @returns { Promise<User> }
    */
   static byId(id) {
-    return this.findOne({ where: { id }, ...this.include })
+    return this.findOne({ where: { id, deleted_at: null }, ...this.include })
   }
 
   /**
@@ -38,7 +38,7 @@ class User extends Model {
    * @returns { Promise< User | null > }
    */
   static authenticate(username, password) {
-    return this.findOne({ where: { username } })
+    return this.findOne({ where: { username, password, deleted_at: null } })
   }
 }
 
@@ -67,6 +67,11 @@ User.init(
     last_name: {
       type: STRING(30),
       allowNull: false
+    },
+    deleted_at: {
+      type: DATETIME,
+      allowNull: true,
+      defaultValue: null
     }
   },
   {

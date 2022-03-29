@@ -1,11 +1,8 @@
-const { Model, DataTypes } = require('sequelize')
-const sequelize = require('../config/connection')
+const { ExtendedModel, STRING, INTEGER, DATETIME } = require('./ExtendedModel')
 
-const { STRING, INTEGER, DATETIME } = DataTypes
-
-class Plant extends Model {
-  static include = {}
-
+class Plant extends ExtendedModel {
+  static tableName = 'plants'
+  static modelName = 'Plant'
   /**
    * Defining the relationships.
    */
@@ -14,20 +11,20 @@ class Plant extends Model {
   }
 
   /**
-   * Returns the entire collection of Plants.
-   * @returns {Promise<Array<Plant>>}
-   */
-  static all() {
-    return this.findAll({ where: { deleted_at: null }, ...this.include })
-  }
-
-  /**
-   * Returns a single Plant if it exists.
-   * @param { number } id
+   * This method will search for plants that are owned by a specific user and not deleted.
+   * @param { number } userId
    * @returns { Promise<Plant> }
    */
-  static byId(id) {
-    return this.findOne({ where: { id }, ...this.include })
+  static byUserId(userId) {
+    return this.find({ where: { userId, deletedAt: null }, ...this.include })
+  }
+
+  static byName(name) {
+    return this.findAll(this.whereObj({ name: `%${name}%` }))
+  }
+
+  static byFamily(family) {
+    return this.findAll(this.whereObj({ family: `%${family}%` }))
   }
 }
 
@@ -39,7 +36,7 @@ Plant.init(
       primaryKey: true,
       autoIncrement: true
     },
-    user_id: {
+    userId: {
       type: INTEGER,
       allowNull: false,
       validate: true,
@@ -56,20 +53,13 @@ Plant.init(
       type: STRING,
       allowNull: false
     },
-    deleted_at: {
+    deletedAt: {
       type: DATETIME,
       allowNull: true,
       defaultValue: null
     }
   },
-  {
-    sequelize,
-    timestamps: true,
-    freezeTableName: true,
-    underscored: true,
-    tableName: 'Plants',
-    modelName: 'Plant'
-  }
+  Plant.defineTable()
 );
 
 module.exports = Plant;

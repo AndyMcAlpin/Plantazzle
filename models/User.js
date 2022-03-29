@@ -1,10 +1,6 @@
-const { Model, DataTypes } = require('sequelize')
-const sequelize = require('../config/connection')
+const { ExtendedModel, STRING, INTEGER, DATETIME } = require('./ExtendedModel')
 
-const { STRING, INTEGER, DATETIME } = DataTypes
-
-class User extends Model {
-  static include = {}
+class User extends ExtendedModel {
 
   /**
    * Defining the relationships.
@@ -14,31 +10,22 @@ class User extends Model {
   }
 
   /**
-   * Returns the entire collection of Users.
-   * @returns {Promise<Array<User>>}
-   */
-  static all() {
-    return this.findAll({ where: { deleted_at: null }, ...this.include })
-  }
-
-  /**
-   * Returns a single User if it exists.
-   * @param { number } id
-   * @returns { Promise<User> }
-   */
-  static byId(id) {
-    return this.findOne({ where: { id, deleted_at: null }, ...this.include })
-  }
-
-  /**
-   * This method will check if the username and password combination exists.  If they do a user is returned,
-   *    otherwise null is returned.
+   * This method will check if the username and password combination exists, and have not been deleted.
+   * If they do a user is returned, otherwise null is returned.
    * @param { string } username
    * @param { string } password In the form of Bcrypt, this method not Bcrypt the password.
    * @returns { Promise< User | null > }
    */
   static authenticate(username, password) {
-    return this.findOne({ where: { username, password, deleted_at: null } })
+    return this.findOne({ where: { username, password, deletedAt: null } })
+  }
+
+  static byFirstName(firstName) {
+    return this.findAll(this.whereObj({ firstName: `%${firstName}%` }))
+  }
+
+  static byLastName(lastName) {
+    return this.findAll(this.whereObj({ lastName: `%${lastName}%` }))
   }
 }
 
@@ -60,28 +47,22 @@ User.init(
       allowNull: false,
       validate: true
     },
-    first_name: {
+
+    firstName: {
       type: STRING(30),
       allowNull: false
     },
-    last_name: {
+    lastName: {
       type: STRING(30),
       allowNull: false
     },
-    deleted_at: {
+    deletedAt: {
       type: DATETIME,
       allowNull: true,
       defaultValue: null
     }
   },
-  {
-    sequelize,
-    timestamps: true,
-    freezeTableName: true,
-    underscored: true,
-    tableName: 'users',
-    modelName: 'User'
-  }
+  User.defineTable()
 );
 
 module.exports = User;

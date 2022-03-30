@@ -1,7 +1,6 @@
 const db = require('../config/connection')
 
-
-const db1 = 'plantazzle_db'
+const db1 = process.env.DB_NAME
 const db2 = 'plantazzle_2'
 
 const drop = schema => db.query(`DROP SCHEMA IF EXISTS \`${schema}\``, { logging: false })

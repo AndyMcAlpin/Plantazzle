@@ -1,4 +1,4 @@
-const { ExtendedModel, INTEGER, DATETIME, STRING } = require('./ExtendedModel')
+const { ExtendedModel, INTEGER, STRING, TEXT } = require('./ExtendedModel')
 
 class PlantBasic extends ExtendedModel {
   static tableName = 'plant_basics'
@@ -7,12 +7,22 @@ class PlantBasic extends ExtendedModel {
   /**
    * Defining the relationships.
    */
-  static associate() {
-    this.include = {}
+  static associate({ MyPlant }) {
+    this.hasOne(MyPlant, { foreignKey: 'PlantBasicId' })
+
+    return this
   }
 
   static byBotanicalName(botanicalName) {
     return this.findAll(this.whereObj({ botanicalName: `%${botanicalName}%` }))
+  }
+
+  static byCommonName(commonName) {
+    return this.findAll(this.whereObj({ commonName: `%${commonName}%` }))
+  }
+
+  static byFamily(family) {
+    return this.findAll(this.whereObj({ family: `%${family}%` }))
   }
 
   static byOrigin(origin) {
@@ -21,6 +31,10 @@ class PlantBasic extends ExtendedModel {
 
   static byPlantType(plantType) {
     return this.findAll(this.whereObj({ plantType: `%${plantType}%` }))
+  }
+
+  static byZone(zone) {
+    return this.findAll(this.whereObj({ zone: `%${zone}%` }))
   }
 
   static byGrowthRate(growthRate) {
@@ -38,6 +52,7 @@ class PlantBasic extends ExtendedModel {
   static byToxicity(toxicity) {
     return this.findAll(this.whereObj({ toxicity: `%${toxicity}%` }))
   }
+
 }
 
 PlantBasic.init(
@@ -53,6 +68,14 @@ PlantBasic.init(
       allowNull: false,
       unique: true
     },
+    commonName: {
+      type: STRING,
+      allowNull: true
+    },
+    family: {
+      type: STRING,
+      allowNull: true
+    },
     origin: {
       type: STRING,
       allowNull: true
@@ -61,26 +84,25 @@ PlantBasic.init(
       type: STRING,
       allowNull: true
     },
-    growthRate: {
+    zone: {
       type: STRING,
+      allowNull: true
+    },
+    growthRate: {
+      type: TEXT,
       allowNull: true
     },
     height: {
-      type: STRING,
+      type: TEXT,
       allowNull: true
     },
     flowers: {
-      type: STRING,
+      type: TEXT,
       allowNull: true
     },
     toxicity: {
-      type: STRING,
+      type: TEXT,
       allowNull: true
-    },
-    deletedAt: {
-      type: DATETIME,
-      allowNull: true,
-      defaultValue: null
     }
   },
   PlantBasic.defineTable()

@@ -7,9 +7,9 @@ class MyPlant extends ExtendedModel {
   /**
    * Defining the relationships.
    */
-  static associate({ User, PlantBasic }) {
-    this.PlantBasic = this.belongsTo(PlantBasic, { name: 'PlantBasicId' })
-
+  static associate({ PlantBasic }) {
+    this.belongsTo(PlantBasic, { name: 'PlantBasicId' })
+    this.getPlantBasic = async () => PlantBasic
     return this
   }
 }

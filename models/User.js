@@ -8,7 +8,7 @@ class User extends ExtendedModel {
   static attributes = ['id', 'userName', 'firstName', 'lastName', 'email', 'zipCode']
 
   static handleErrors(err) {
-    if(err.errors[0].message === 'username must be unique') {
+    if (err.errors[0].message === 'username must be unique') {
       return Promise.reject('Username is taken.')
     }
   }
@@ -35,10 +35,10 @@ class User extends ExtendedModel {
 
   static async create(values) {
     try {
-      if(!values.password) return super.create(values) // Let sequelize handle the column missing.
+      if (!values.password) return super.create(values) // Let sequelize handle the column missing.
       values.password = await this.hashPassword(values.password)
       return await super.create(values)
-    } catch(err) {
+    } catch (err) {
       return this.handleErrors(err)
     }
   }
@@ -46,10 +46,10 @@ class User extends ExtendedModel {
   static all() {
     return this.getIncludeMyPlant()
       .then(include => this.findAll({
-      attributes: this.attributes,
-      include,
-      nest: true
-    }))
+        attributes: this.attributes,
+        include,
+        nest: true
+      }))
   }
 
   static async byId(id) {
@@ -88,11 +88,11 @@ class User extends ExtendedModel {
    */
   static async authenticate(username, password) {
     try {
-      const user = await this.findOne({ where: { username }, attributes: [ 'password' ] })
-      if(!user) return false
+      const user = await this.findOne({ where: { username }, attributes: ['password'] })
+      if (!user) return false
       const isUser = await this.comparePass(password, user.password)
       return !isUser ? false : this.byUsername(username)
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err)
     }
   }
@@ -100,10 +100,10 @@ class User extends ExtendedModel {
   static byUsername(username) {
     return this.getIncludeMyPlant()
       .then(include => this.findOne({
-      where: { username },
-      attributes: this.attributes,
-      include: include
-    }))
+        where: { username },
+        attributes: this.attributes,
+        include: include
+      }))
   }
 
   static searchTable(whereObject) {

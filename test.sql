@@ -1,0 +1,1 @@
+create table users(id primary key auto_increment, passwd char(64), first_name varchar(40), last_name varchar(40), email varchar(30), zip_code int, created_at timestamp, updated_at timestamp, delete_at timestamp);

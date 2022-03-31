@@ -1,6 +1,12 @@
-const { User, PlantBasic } = require('./models')
+const { User } = require('./models')
+var username = 'belford4'
+var password = 'qwer'
 
-User.all()
-// PlantBasic.byId(1)
-  .then(plantBasic => console.log(JSON.stringify(plantBasic, null, 2)))
-  .catch(console.error)
+User.authenticate(username, password)
+  .then(function (user) {
+    if (!user)
+      return false
+    // user
+    console.log(user)
+  })
+// User.authenticate('shell', 'qwe')

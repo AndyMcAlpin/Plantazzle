@@ -44,18 +44,19 @@ class User extends ExtendedModel {
   }
 
   static all() {
-    return this.findAll({
+    return this.getIncludeMyPlant()
+      .then(include => this.findAll({
       attributes: this.attributes,
-      include: this.includeMyPlant,
+      include,
       nest: true
-    })
+    }))
   }
 
-  static byId(id) {
+  static async byId(id) {
     return this.findOne({
       where: { id },
       attributes: this.attributes,
-      include: this.includeMyPlant,
+      include: await this.getIncludeMyPlant(),
       nest: true,
     })
   }
@@ -65,11 +66,16 @@ class User extends ExtendedModel {
    */
   static associate({ MyPlant }) {
     this.hasMany(MyPlant, { foreignKey: 'UserId' })
-    this.includeMyPlant = { model: MyPlant, attributes: ['id'], include: [ MyPlant.PlantBasic ] }
-    this.createMyPlant = this.hasMany(MyPlant)
-    this.include = {
-      model: MyPlant,
-      include: MyPlant.PlantBasic
+    this.getIncludeMyPlant = async () => {
+      const includePlantBasic = await MyPlant.getPlantBasic()
+      return {
+        model: MyPlant,
+        attributes: ['id'],
+        include: {
+          model: includePlantBasic,
+          attributes: includePlantBasic.attributes
+        }
+      }
     }
 
     return this;
@@ -92,15 +98,17 @@ class User extends ExtendedModel {
   }
 
   static byUsername(username) {
-    return this.findOne({
+    return this.getIncludeMyPlant()
+      .then(include => this.findOne({
       where: { username },
       attributes: this.attributes,
-      include: this.includeMyPlant
-    })
+      include: include
+    }))
   }
 
   static searchTable(whereObject) {
-    return this.findAll({ where: whereObject, include: this.includeMyPlant })
+    return this.getIncludeMyPlant()
+      .then(include => this.findAll({ where: whereObject, include }))
   }
 
   static byFirstName(firstName) {

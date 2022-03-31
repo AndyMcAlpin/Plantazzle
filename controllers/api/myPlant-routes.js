@@ -94,4 +94,23 @@ router.post('/', withAuth, (req, res) => {
         })
 });
 
+router.delete('/:id', withAuth, (req, res) => {
+    MyPlant.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(dbMyPlantData => {
+            if (!dbMyPlantData) {
+                res.status(404).json({ message: 'Your plant was not found at this id' });
+                return;
+            }
+            res.json(dbMyPlantData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 module.exports = router;

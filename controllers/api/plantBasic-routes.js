@@ -112,7 +112,9 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', modAuth, (req, res) => {
+router.delete('/:id', 
+// modAuth, 
+(req, res) => {
     this.post.destroy({
         where: {
             id: req.params.id

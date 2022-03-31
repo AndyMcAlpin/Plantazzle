@@ -20,10 +20,14 @@ class PlantBasic extends ExtendedModel {
   /**
    * Defining the relationships.
    */
-  static associate({ MyPlant }) {
-    this.hasOne(MyPlant, { foreignKey: 'PlantBasicId' })
+  static associate({ MyPlant, PlantPicture }) {
+    this.hasOne(MyPlant, { foreignKey: 'PlantBasicId', key: 'id', model: MyPlant })
+    this.hasMany(PlantPicture, { foreignKey: 'PlantBasicId', key: 'id', model: PlantPicture })
     this.getInclude = async () => {
-      return { model: MyPlant, attributes: ['id'] }
+      return [
+        { model: MyPlant, attributes: ['id'] },
+        { model: PlantPicture, attributes: ['id', 'filename'] }
+      ]
     }
     return this
   }

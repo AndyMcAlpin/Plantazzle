@@ -12,14 +12,13 @@ const sync = async () => {
 }
 
 const seed = async () => {
-  await User.bulkCreate(userData, { logging: false })
-  await PlantBasic.bulkCreate(plantBasicData, { logging: false })
-  await MyPlant.bulkCreate(myPlantData, { logging: false })
-}
+  await User.bulkCreate(userData, { logging: false });
+  await PlantBasic.bulkCreate(plantBasicData, { logging: false });
+  await MyPlant.bulkCreate(myPlantData, { logging: false });
+};
 
 sync()
   .then(() => seed())
   .then(() => User.byId(6))
-  .then(user => console.log(JSON.stringify(user, null, 2)))
-  .catch(console.error)
-
+  .then((user) => console.log(JSON.stringify(user, null, 2)))
+  .catch(console.error);

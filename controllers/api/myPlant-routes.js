@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, PlantBasic, MyPlant } = require('../../models');
+const { User, PlantBasic, MyPlant, PlantPicture } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -26,6 +26,17 @@ router.get('/', (req, res) => {
                     'flowers',
                     'toxicity'
                 ],
+                include: [
+                    {
+                        model: PlantPicture,
+                        attributes: [
+                            'id',
+                            'filename',
+                            'filePath',
+                            'PlantBasicId'
+                        ]
+                    }
+                ]
                 // include: additional plant tables
             }
         ]
@@ -64,6 +75,17 @@ router.get('/:id', (req, res) => {
                     'flowers',
                     'toxicity'
                 ],
+                include: [
+                    {
+                        model: PlantPicture,
+                        attributes: [
+                            'id',
+                            'filename',
+                            'filePath',
+                            'PlantBasicId'
+                        ]
+                    }
+                ]
                 // include: additional plant tables
             }
         ]

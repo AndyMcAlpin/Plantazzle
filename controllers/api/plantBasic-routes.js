@@ -64,6 +64,17 @@ router.get('/:id', (req, res) => {
             'flowers',
             'toxicity'
         ],
+        include: [
+            {
+                model: PlantPicture,
+                attributes: [
+                    'id',
+                    'filename',
+                    'filePath',
+                    'PlantBasicId'
+                ]
+            }
+        ]
         // include: plant info tables and plant comments
     })
         .then(dbPlantBasicData => {

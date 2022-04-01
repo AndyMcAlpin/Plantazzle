@@ -1,38 +1,78 @@
-const { ExtendedModel, STRING, INTEGER } = require('./ExtendedModel')
+const { ExtendedModel, STRING, INTEGER, VIRTUAL} = require('./ExtendedModel')
+const { DataTypes } = require('sequelize')
 const { genSalt, compare, hash } = require('bcrypt')
 
+/**
+ * @typedef {{
+ *  id?: number,
+ *  userName: string,
+ *  lastName: string,
+ *  email: string,
+ *  zipCode: number
+ * }} UserObject
+ */
 class User extends ExtendedModel {
 
   static tableName = 'users'
   static modelName = 'User'
-  static attributes = ['id', 'userName', 'firstName', 'lastName', 'email', 'zipCode']
+  static attributes = ['id', 'userName', 'fullName', 'firstName', 'lastName', 'email', 'zipCode']
 
+  /**
+   * An easy way to capture error that either are by design or unexpected.
+   * @param { Error | string } err
+   * @returns { Promise<never> }
+   * @author Jon Taylor
+   */
   static handleErrors(err) {
     if(err.errors[0].message === 'username must be unique') {
       return Promise.reject('Username is taken.')
     }
   }
 
-  static generateSalt() {
+  /**
+   * Generates salt needed to hash the password.
+   * @param { number } rounds
+   * @returns {Promise<salt>}
+   */
+  static generateSalt(rounds) {
     return new Promise((resolve, reject) => {
-      genSalt(10, (err, salt) => !err ? resolve(salt) : reject(err))
+      genSalt(rounds, (err, salt) => !err ? resolve(salt) : reject(err))
     })
   }
 
-  static comparePass(pass, hash) {
+  /**
+   * This takes a string that has not been hashed and a one that has been hashed.
+   * They are compared for authentication.
+   * @param { string } password
+   * @param { string } hash
+   * @returns { Promise<boolean> }
+   * @author Jon Taylor
+   */
+  static comparePass(password, hash) {
     return new Promise((resolve, reject) => {
-      compare(pass, hash, (err, results) => !err ? resolve(results) : reject(err))
+      compare(password, hash, (err, results) => !err ? resolve(results) : reject(err))
     })
   }
 
-  static hashPassword(pass) {
+  /**
+   * Takes a string and hashes it so that the string can utilize to validate authentication later.
+   * @param { string } password
+   * @returns { Promise<string> }  The Bcrypt hash is 72 characters in the length.
+   * @author Jon Taylor
+   */
+  static hashPassword(password) {
     return new Promise((resolve, reject) => {
       return this.generateSalt()
-        .then(salt => hash(pass, salt, (err, hash) => !err ? resolve(hash) : reject(err)))
+        .then(salt => hash(password, salt, (err, hash) => !err ? resolve(hash) : reject(err)))
         .catch(reject)
     })
   }
 
+  /**
+   * This method is overwritten so that we can replace the password as hashed instead/
+   * @param { UserObject } values
+   * @returns { Promise<any|values> }
+   */
   static async create(values) {
     try {
       if(!values.password) return super.create(values) // Let sequelize handle the column missing.
@@ -73,7 +113,8 @@ class User extends ExtendedModel {
         attributes: ['id'],
         include: {
           model: includePlantBasic,
-          attributes: includePlantBasic.attributes
+          attributes: includePlantBasic.attributes,
+          include: await includePlantBasic.getInclude()
         }
       }
     }
@@ -82,13 +123,25 @@ class User extends ExtendedModel {
   }
 
   /**
+   * This method gets the password that is being stored so that a user can be authenticated.
+   * @param { string } username
+   * @returns { Promise<User> }
+   * @author Jon Taylor
+   */
+  static getPasswordByUsername(username) {
+    return this.findOne({ where: { username }, attributes: [ 'password' ] })
+  }
+
+  /**
+   * Gathers the password and utilizes compare to ensure proper authentication
    * @param { string } username
    * @param { string } password
    * @returns { Promise<boolean> }
+   * @author Jon Taylor
    */
   static async authenticate(username, password) {
     try {
-      const user = await this.findOne({ where: { username }, attributes: [ 'password' ] })
+      const user = await this.getPasswordByUsername(username)
       if(!user) return false
       const isUser = await this.comparePass(password, user.password)
       return !isUser ? false : this.byUsername(username)
@@ -128,43 +181,89 @@ class User extends ExtendedModel {
   }
 }
 
-User.init(
-  {
+User.init({
     id: {
-      type: INTEGER,
+      field: 'id',
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
-    },
-    username: {
-      type: STRING(30),
-      allowNull: false,
-      unique: true
+      autoIncrement: true,
+      unique: false,
+      validate: false,
+      defaultValue: undefined,
     },
     password: {
-      type: STRING(72),
+      field: 'password',
+      type: DataTypes.STRING(72),
       allowNull: false,
-      validate: true
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      validate: true,
+      defaultValue: undefined,
     },
-
+    username: {
+      field: 'username',
+      type: DataTypes.STRING(30),
+      allowNull: false,
+      primaryKey: false,
+      autoIncrement: false,
+      unique: true,
+      validate: false,
+      defaultValue: undefined,
+    },
     firstName: {
-      type: STRING(30),
-      allowNull: false
+      field: 'first_name',
+      type: DataTypes.STRING(30),
+      allowNull: false,
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      validate: false,
+      defaultValue: undefined,
     },
     lastName: {
-      type: STRING(30),
-      allowNull: false
+      field: 'last_name',
+      type: DataTypes.STRING(30),
+      allowNull: false,
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      validate: false,
+      defaultValue: undefined,
     },
     email: {
-      type: STRING,
-      allowNull: true
+      field: 'email',
+      type: DataTypes.STRING(60),
+      allowNull: true,
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      validate: false,
+      defaultValue: undefined,
     },
     zipCode: {
-      type: INTEGER,
-      allowNull: true
+      field: 'zip_code',
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      validate: false,
+      defaultValue: undefined,
+    },
+    fullName: {
+      type: VIRTUAL,
+      get() {
+        return `${this.firstName} ${this.lastName}`
+      },
+      set(str) {
+        throw new Error('The User.fullName property cannot be set.  It is read only.')
+      }
     }
   },
   User.defineTable()
 );
 
 module.exports = User;
+

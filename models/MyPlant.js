@@ -26,6 +26,7 @@ MyPlant.init(
       type: INTEGER,
       allowNull: false,
       references: {
+        name: 'user_id',
         modelName: 'User',
         tableName: 'users',
         foreignKey: true,
@@ -37,6 +38,7 @@ MyPlant.init(
       allowNull: false,
       validate: false,
       references: {
+        name: 'plant_basic_id',
         modelName: 'PlantBasic',
         tableName: 'plant_basics',
         foreignKey: true,

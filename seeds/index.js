@@ -1,13 +1,15 @@
-const dropSchema = require("./dropSchema");
-const { User, MyPlant, PlantBasic } = require("../models");
-const { userData, myPlantData, plantBasicData } = require("./data");
+const dropSchema = require('./dropSchema')
+const { User, MyPlant, PlantBasic, PlantPicture} = require('../models')
+const { userData, myPlantData, plantBasicData } = require('./data')
+
 
 const sync = async () => {
-  await dropSchema();
-  await User.sync({ logging: false });
-  await PlantBasic.sync({ logging: false });
-  await MyPlant.sync({ logging: false });
-};
+  await dropSchema()
+  await User.sync({ logging: false })
+  await PlantBasic.sync({ logging: false })
+  await MyPlant.sync({ logging: false })
+  await PlantPicture.sync({ logging: false })
+}
 
 const seed = async () => {
   await User.bulkCreate(userData, { logging: false });

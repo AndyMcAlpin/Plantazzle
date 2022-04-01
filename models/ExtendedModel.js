@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../config/connection')
 
-const { STRING, INTEGER, TEXT } = DataTypes
+const { STRING, INTEGER, TEXT, VIRTUAL } = DataTypes
 
 class ExtendedModel extends Model {
   static include = {}
@@ -21,4 +21,4 @@ class ExtendedModel extends Model {
   }
 }
 
-module.exports = { ExtendedModel, INTEGER, STRING, TEXT };
+module.exports = { ExtendedModel, INTEGER, STRING, TEXT, VIRTUAL };

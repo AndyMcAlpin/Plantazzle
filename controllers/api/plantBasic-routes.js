@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, PlantBasic, MyPlant } = require('../../models');
+const { User, PlantBasic, MyPlant, PlantPicture } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
@@ -19,8 +19,23 @@ router.get('/', (req, res) => {
             'flowers',
             'toxicity'
         ],
-        // plant comments togo here
-        // include: [other plant info tables]
+        include: [
+            {
+                model: PlantPicture,
+                attributes: [
+                    'id',
+                    'filename',
+                    'filePath',
+                    'PlantBasicId'
+                ]
+            },
+            {
+                // [other plant info tables]
+            },
+            {
+                // plant comments togo here
+            }
+        ]
     })
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {

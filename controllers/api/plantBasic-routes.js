@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
+const modAuth = require('../../utils/modAuth');
 
 router.get('/', (req, res) => {
     PlantBasic.findAll({
@@ -127,9 +128,7 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', 
-// modAuth, 
-(req, res) => {
+router.delete('/:id', modAuth, (req, res) => {
     this.post.destroy({
         where: {
             id: req.params.id

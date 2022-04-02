@@ -6,27 +6,14 @@ const { nanoid } = require('nanoid')
 class PlantPicture extends ExtendedModel {
   static tableName = 'plant_pics'
   static modelName = 'PlantPicture'
-  static attributes = [ 'id', 'PlasticBasicId', 'filePath', 'filename' ]
   static pathToImageFolder = [ __dirname, '../', 'public/', 'assets/', 'images/', 'plants/' ]
 
   static handleError(err) {
-
+    return Promise.reject(err)
   }
 
   static getPathToFolder(filename) {
     return resolve(join(...this.pathToImageFolder, filename))
-  }
-
-  static associate({ PlantBasic }) {
-    this.hasOne(PlantBasic, { as: 'plantId', model:PlantBasic, foreignKey: 'PlantBasicId', key: 'id',  })
-
-    this.getPlantBasic = () => PlantBasic
-
-    this.getIncludeWithPlant = async () => {
-      return { include: { model: await this.getPlantBasic() } }
-    }
-
-    return this
   }
 
   /**
@@ -37,48 +24,18 @@ class PlantPicture extends ExtendedModel {
    * @param { string } filePath
    * @returns { Promise<PlantPicture> }
    */
-  static async create({ PlantBasicId, filePath }) {
+  static async create({ PlantBasicId, filePath }, options) {
     try {
       const filename = `${nanoid(12)}${extname(filePath)}`
       const image = await readFile(filePath)
       await writeFile(this.getPathToFolder(filename), image)
-      return super.create({ PlantBasicId, filename })
+      return super.create({ PlantBasicId, filename }, options)
     } catch(err) {
       return this.handleError(err)
     }
   }
 }
 
-PlantPicture.init({
-  id: {
-    type: INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-  filename: {
-    type: STRING(),
-    allowNull: false
-  },
-  filePath: {
-    type: VIRTUAL,
-    get() {
-      return `${this.getPathToFolder(this.filename)}`
-    },
-    set(str) {
-      throw new Error('The filePath property is read only.  It  cannot be changed.')
-    }
-  },
-  PlantBasicId: {
-    type: INTEGER,
-    allowNull: false,
-    references: {
-      modelName: 'PlantBasic',
-      tableName: 'plant_basics',
-      foreignKey: true,
-      unique: false
-    }
-  }
-}, PlantPicture.defineTable())
+PlantPicture.init(PlantPicture.defineColumns(), PlantPicture.defineTable())
 
 module.exports = PlantPicture

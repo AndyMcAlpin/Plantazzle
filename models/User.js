@@ -1,5 +1,4 @@
-const { ExtendedModel, STRING, INTEGER, VIRTUAL} = require('./ExtendedModel')
-const { DataTypes } = require('sequelize')
+const { ExtendedModel} = require('./ExtendedModel')
 const { genSalt, compare, hash } = require('bcrypt')
 
 /**
@@ -12,10 +11,8 @@ const { genSalt, compare, hash } = require('bcrypt')
  * }} UserObject
  */
 class User extends ExtendedModel {
-
   static tableName = 'users'
   static modelName = 'User'
-  static attributes = ['id', 'userName', 'fullName', 'firstName', 'lastName', 'email', 'zipCode']
 
   /**
    * An easy way to capture error that either are by design or unexpected.
@@ -83,45 +80,6 @@ class User extends ExtendedModel {
     }
   }
 
-  static all() {
-    return this.getIncludeMyPlant()
-      .then(include => this.findAll({
-      attributes: this.attributes,
-      include,
-      nest: true
-    }))
-  }
-
-  static async byId(id) {
-    return this.findOne({
-      where: { id },
-      attributes: this.attributes,
-      include: await this.getIncludeMyPlant(),
-      nest: true,
-    })
-  }
-
-  /**
-   * Defining the relationships.
-   */
-  static associate({ MyPlant }) {
-    this.hasMany(MyPlant, { foreignKey: 'UserId' })
-    this.getIncludeMyPlant = async () => {
-      const includePlantBasic = await MyPlant.getPlantBasic()
-      return {
-        model: MyPlant,
-        attributes: ['id'],
-        include: {
-          model: includePlantBasic,
-          attributes: includePlantBasic.attributes,
-          include: await includePlantBasic.getInclude()
-        }
-      }
-    }
-
-    return this;
-  }
-
   /**
    * This method gets the password that is being stored so that a user can be authenticated.
    * @param { string } username
@@ -149,121 +107,9 @@ class User extends ExtendedModel {
       return Promise.reject(err)
     }
   }
-
-  static byUsername(username) {
-    return this.getIncludeMyPlant()
-      .then(include => this.findOne({
-      where: { username },
-      attributes: this.attributes,
-      include: include
-    }))
-  }
-
-  static searchTable(whereObject) {
-    return this.getIncludeMyPlant()
-      .then(include => this.findAll({ where: whereObject, include }))
-  }
-
-  static byFirstName(firstName) {
-    return this.searchTable({ firstName: `%${firstName}%` })
-  }
-
-  static byLastName(lastName) {
-    return this.searchTable({ lastName: `%${lastName}%` })
-  }
-
-  static byEmail(email) {
-    return this.searchTable({ email: `%${email}%` })
-  }
-
-  static byZip(zip) {
-    return this.searchTable({ zip: `%${zip}%` })
-  }
 }
 
-User.init({
-    id: {
-      field: 'id',
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-      unique: false,
-      validate: false,
-      defaultValue: undefined,
-    },
-    password: {
-      field: 'password',
-      type: DataTypes.STRING(72),
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      unique: false,
-      validate: true,
-      defaultValue: undefined,
-    },
-    username: {
-      field: 'username',
-      type: DataTypes.STRING(30),
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      unique: true,
-      validate: false,
-      defaultValue: undefined,
-    },
-    firstName: {
-      field: 'first_name',
-      type: DataTypes.STRING(30),
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      unique: false,
-      validate: false,
-      defaultValue: undefined,
-    },
-    lastName: {
-      field: 'last_name',
-      type: DataTypes.STRING(30),
-      allowNull: false,
-      primaryKey: false,
-      autoIncrement: false,
-      unique: false,
-      validate: false,
-      defaultValue: undefined,
-    },
-    email: {
-      field: 'email',
-      type: DataTypes.STRING(60),
-      allowNull: true,
-      primaryKey: false,
-      autoIncrement: false,
-      unique: false,
-      validate: false,
-      defaultValue: undefined,
-    },
-    zipCode: {
-      field: 'zip_code',
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      primaryKey: false,
-      autoIncrement: false,
-      unique: false,
-      validate: false,
-      defaultValue: undefined,
-    },
-    fullName: {
-      type: VIRTUAL,
-      get() {
-        return `${this.firstName} ${this.lastName}`
-      },
-      set(str) {
-        throw new Error('The User.fullName property cannot be set.  It is read only.')
-      }
-    }
-  },
-  User.defineTable()
-);
+User.init(User.defineColumns(), User.defineTable());
 
 module.exports = User;
 

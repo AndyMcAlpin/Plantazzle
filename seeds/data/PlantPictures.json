@@ -1,0 +1,61 @@
+[{
+  "PlantBasicId": 1,
+  "filePath": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 2,
+  "filePath": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 3,
+  "filePath": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 4,
+  "filePath": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 5,
+  "filePath": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 6,
+  "filePath": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 7,
+  "filePath": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 8,
+  "filePath": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 9,
+  "filePath": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 10,
+  "filePath": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 11,
+  "filePath": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 12,
+  "filePath": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 13,
+  "filePath": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 14,
+  "filePath": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 15,
+  "filePath": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 16,
+  "filePath": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 17,
+  "filePath": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 18,
+  "filePath": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 19,
+  "filePath": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 20,
+  "filePath": "./seeds/data/images/image1.jpg"
+}]

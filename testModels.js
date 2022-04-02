@@ -1,24 +1,25 @@
-const  { readFile } = require('fs/promises')
-const { User, PlantPicture, PlantBasic} = require('./models')
+const { User, MyPlant, PlantBasic, PlantPicture, Comment } = require('./models')
+const { columns, attributes } = require('./models/props')
 
-async function seedImages() {
-  const filePaths = [
-    './seeds/images/image1.jpg',
-    './seeds/images/image2.jpg',
-    './seeds/images/image3.jpg',
-    './seeds/images/image4.jpg',
-    './seeds/images/image5.jpg'
-  ]
-  const log = []
-  let PlantBasicId = 1
-  for(const filePath of filePaths) {
-    log.push(await PlantPicture.create({ PlantBasicId, filePath }))
-    PlantBasicId++
+const logMe = results => console.log(JSON.stringify(results, null ,2))
+console.log(columns.Comment)
+User.findAll({
+  attributes: attributes.User,
+  include: {
+    model: MyPlant,
+    attributes: attributes.MyPlant,
+    include: {
+      model: PlantBasic,
+      attributes: attributes.PlantBasic,
+      include: [ {
+        model: PlantPicture,
+        attributes: attributes.PlantPicture
+      }, {
+        model: Comment,
+        attributes: attributes.Comment
+      } ]
+    }
   }
-
-  return log
-}
-
-PlantBasic.byId(1)
-  .then(user => console.log(JSON.stringify(user, null, 2)))
+})
+  .then(logMe)
   .catch(console.error)

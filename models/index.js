@@ -6,6 +6,8 @@ const MyPlant = require('./MyPlant')
 const PlantBasic = require('./PlantBasic')
 const PlantPicture = require('./PlantPicture')
 const Comment = require('./Comment')
+const PlantGrowing = require('./PlantGrowing')
+const PlantCare = require('./PlantCare')
 const Vote = require('./Vote')
 
 /**
@@ -29,11 +31,16 @@ User.hasMany(Vote, uPkFk)
 PlantBasic.hasOne(MyPlant, pPkFk)
 PlantBasic.hasMany(PlantPicture, pPkFk)
 PlantBasic.hasMany(Comment, pPkFk)
+PlantBasic.hasOne(PlantGrowing, pPkFk)
+PlantBasic.hasOne(PlantCare, pPkFk)
 
 MyPlant.belongsTo(PlantBasic, pPkFk)
 MyPlant.belongsTo(User, uPkFk)
 
 PlantPicture.belongsTo(PlantBasic, pPkFk)
+PlantGrowing.belongsTo(PlantBasic, pPkFk)
+PlantCare.belongsTo(PlantBasic, pPkFk)
+
 
 Comment.belongsTo(User, uPkFk)
 Comment.belongsTo(PlantBasic, pPkFk)
@@ -47,6 +54,8 @@ module.exports = {
   MyPlant,
   PlantBasic,
   PlantPicture,
+  PlantGrowing,
+  PlantCare,
   Comment,
   Vote
 }

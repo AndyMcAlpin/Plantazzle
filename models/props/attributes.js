@@ -15,5 +15,7 @@ module.exports = {
     'toxicity'
   ],
   MyPlant: [ 'id' ],
-  PlantPicture: [ 'id', 'filename', 'filePath' ]
+  PlantPicture: [ 'id', 'filename', 'filePath' ],
+  PlantGrowing: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ],
+  PlantCare: [ 'leafCare', 'repotting', 'pruningShaping' ]
 }

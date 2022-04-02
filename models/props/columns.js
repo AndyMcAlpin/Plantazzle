@@ -177,5 +177,22 @@ module.exports = {
       allowNull: false,
       defaultValue: 0,
     }
+  },
+  PlantGrowing: {
+    id,
+    PlantBasicId,
+    light: STRING,
+    temperature: STRING,
+    humidity: STRING,
+    soil: STRING,
+    watering: STRING,
+    fertilizing: STRING
+  },
+  PlantCare: {
+    id,
+    PlantBasicId,
+    leafCare: STRING,
+    repotting: STRING,
+    pruningShaping: STRING,
   }
 }

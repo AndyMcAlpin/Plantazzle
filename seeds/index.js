@@ -1,6 +1,6 @@
 const dropSchema = require('./dropSchema')
 const { rm, mkdir } = require('fs/promises')
-const { User, MyPlant, PlantBasic, PlantPicture, Comment, Vote} = require('../models')
+const { User, MyPlant, PlantBasic, PlantPicture, Comment, Vote, PlantGrowing, PlantCare } = require('../models')
 const { userData, myPlantData, plantBasicData, plantPictureData, commentData, voteData} = require('./data')
 
 
@@ -20,6 +20,8 @@ const sync = async () => {
   await PlantBasic.sync({ logging: false })
   await MyPlant.sync({ logging: false })
   await PlantPicture.sync({ logging: false })
+  await PlantGrowing.sync({ logging: false })
+  await PlantCare.sync({ logging: false })
   await Comment.sync({ logging: false })
   await Vote.sync({ logging: false })
 }

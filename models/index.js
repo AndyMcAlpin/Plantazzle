@@ -1,31 +1,52 @@
+/**
+ * @typedef {User | MyPlant | PlantBasic | PlantPicture | Comment | Vote} PlantazzleModelType
+ */
 const User = require('./User')
 const MyPlant = require('./MyPlant')
 const PlantBasic = require('./PlantBasic')
 const PlantPicture = require('./PlantPicture')
 const Comment = require('./Comment')
+const Vote = require('./Vote')
 
-const UserIDFK = { foreignKey: 'UserId', targetKey: 'id', sourceKey: 'id' }
-const PlantBasicIDFK = { foreignKey: 'PlantBasicId', targetKey: 'id', sourceKey: 'id' }
+/**
+ * Creates options for hasOne, hasMany, and belongsTo methods.
+ * sourceKey supports hasOne and key supports hasMany as the options to pass.
+ * @param { string } columnName
+ * @returns { { sourceKey: string, targetKey: string, foreignKey: string } }
+ */
+const pkFk = ( columnName ) => {
+  return { foreignKey: columnName, targetKey: 'id', sourceKey: 'id' }
+}
 
-PlantBasic.hasOne(MyPlant, PlantBasicIDFK)
-PlantBasic.hasMany(PlantPicture, PlantBasicIDFK)
-PlantBasic.hasMany(Comment, PlantBasicIDFK)
+const uPkFk = pkFk('UserId')
+const pPkFk = pkFk('PlantBasicId')
+const cPkFk = pkFk('CommentId')
 
-MyPlant.belongsTo(PlantBasic, PlantBasicIDFK)
-MyPlant.belongsTo(User, UserIDFK)
+User.hasMany(Comment, uPkFk)
+User.hasMany(MyPlant, uPkFk)
+User.hasMany(Vote, uPkFk)
 
-PlantPicture.belongsTo(PlantBasic, PlantBasicIDFK)
+PlantBasic.hasOne(MyPlant, pPkFk)
+PlantBasic.hasMany(PlantPicture, pPkFk)
+PlantBasic.hasMany(Comment, pPkFk)
 
-Comment.belongsTo(User, UserIDFK)
-Comment.belongsTo(PlantBasic, PlantBasicIDFK)
+MyPlant.belongsTo(PlantBasic, pPkFk)
+MyPlant.belongsTo(User, uPkFk)
 
-User.hasMany(Comment, UserIDFK)
-User.hasMany(MyPlant, UserIDFK)
+PlantPicture.belongsTo(PlantBasic, pPkFk)
+
+Comment.belongsTo(User, uPkFk)
+Comment.belongsTo(PlantBasic, pPkFk)
+Comment.hasMany(Vote, cPkFk)
+
+Vote.belongsTo(User, uPkFk)
+Vote.belongsTo(Comment, cPkFk)
 
 module.exports = {
   User,
   MyPlant,
   PlantBasic,
   PlantPicture,
-  Comment
+  Comment,
+  Vote
 }

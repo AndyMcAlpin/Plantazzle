@@ -1,23 +1,34 @@
 const { DataTypes } = require('sequelize')
-const { INTEGER, STRING, TEXT, VIRTUAL  } = DataTypes
+const { INTEGER, STRING, TEXT, VIRTUAL, BOOLEAN } = DataTypes
 
 // References
 const PlantBasicId = {
   type: INTEGER,
+  allowNull: false,
+  field: 'plant_basic_id',
     references: {
       table: 'plant_basics',
       key: 'id',
-      field: 'plant_basic_id',
       foreignKey: true
   }
 }
 const UserId = {
   type: INTEGER,
+  field: 'user_id',
+  allowNull: false,
   references: {
     table: 'users',
-    field: 'user_id',
     key: 'id',
     foreignKey: true
+  }
+}
+const CommentId = {
+  type: INTEGER,
+    field: 'comment_id',
+    references: {
+    table: 'comments',
+      key: 'id',
+      foreignKey: true
   }
 }
 
@@ -156,5 +167,15 @@ module.exports = {
     },
     UserId,
     PlantBasicId
+  },
+  Vote: {
+    id,
+    UserId,
+    CommentId,
+    upvote: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    }
   }
 }

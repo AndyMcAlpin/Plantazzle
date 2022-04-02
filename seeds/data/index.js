@@ -3,5 +3,6 @@ module.exports = {
   myPlantData: require('./MyPlants.json'),
   plantBasicData: require('./PlantBasics.json'),
   plantPictureData: require('./PlantPictures.json'),
-  commentData: require('./Comments.json')
+  commentData: require('./Comments.json'),
+  voteData: require('./Votes.json')
 }

@@ -1,8 +1,7 @@
 const dropSchema = require('./dropSchema')
-const { resolve } = require('path')
 const { rm, mkdir } = require('fs/promises')
-const { User, MyPlant, PlantBasic, PlantPicture, Comment } = require('../models')
-const { userData, myPlantData, plantBasicData, plantPictureData, commentData } = require('./data')
+const { User, MyPlant, PlantBasic, PlantPicture, Comment, Vote} = require('../models')
+const { userData, myPlantData, plantBasicData, plantPictureData, commentData, voteData} = require('./data')
 
 
 const seedPlantPicture = async () => {
@@ -22,6 +21,7 @@ const sync = async () => {
   await MyPlant.sync({ logging: false })
   await PlantPicture.sync({ logging: false })
   await Comment.sync({ logging: false })
+  await Vote.sync({ logging: false })
 }
 
 const seed = async () => {
@@ -31,6 +31,7 @@ const seed = async () => {
   await seedPlantPicture()
   for(let image of plantPictureData) await PlantPicture.create(image, { logging: false })
   await Comment.bulkCreate(commentData, { logging: false })
+  await Vote.bulkCreate(voteData, { logging: false })
 }
 
 sync()

@@ -12,15 +12,36 @@
         <div class="wrapper">
             <header>
                 <h1>
-                    <a href="/"> One Stop Shop For Everything Botanical!</a>
+                     <p>One Stop Shop For Everything Botanical!</p>
                 </h1>
+                <div class="container">
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+
+                    <button type="submit">Login</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me 
+                    </label>
+                </div>
+                <div class="container">
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <span class="password">Forgot <a href="#">password</a></span>
+                </div>
+                <div class="container">
+                    <label for="guestbtn"><b>Continue as guest</b></label>
+                    <button type="button" class="guestbtn">Continue as guest</button>
+                </div>
+
             </header>
             <main>
-                {{{ body}}}
+                {{{body}}}
             </main>
             <footer>
                 Want to sign up? Click Below!
-                {{{Signup}}}
+                <a href="/views/sign_up.handlebars">HERE</a>
             </footer>
         </div>
     </body>

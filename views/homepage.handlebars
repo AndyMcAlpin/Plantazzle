@@ -1,1 +1,28 @@
-<div> homepage </div>
+<!DOCTYPE html>
+<html lang="en">
+        
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    {{!-- this is the nav bar. it will be on every page--}}
+    <header>
+        <ul>
+            <li><a href="/views/homepage.handlebars">Home</a></li>
+            <li><a href="/views/Explore.handlebars">Explore</a></li>
+            <li><a href="/views/post.handlebars">Post</a></li>
+            <li><a href="/views/Profile.handlebars">Profile</a></li>
+            <li><a href="/views/FAQ.handlebars">FAQ</a></li>
+        </ul>
+    </header>
+    <main>
+        {{!-- users feed of pictures --}}
+        <section class="container">
+            <section class="flex-row justify-center">
+                {{#each user.photos as |Posts|}}
+                {{> user-details}}
+                {{/each}}
+            </section>
+        </section>
+
+    </main>

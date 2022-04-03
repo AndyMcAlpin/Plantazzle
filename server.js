@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/connection');
+const req = require('express/lib/request');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
@@ -23,6 +24,7 @@ const sess = {
 
 app.use(session(sess));
 
+
 // helpers here
 
 app.engine('handlebars', hbs.engine);
@@ -33,6 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(require('./controllers/'));
+app.use("/",require("./views/mike"))
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('Server started'));

@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User, PlantBasic, MyPlant } = require('../../models');
+const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
+const { fn, col } = require('sequelize');
 
 // get all users
 router.get('/', (req, res) => {
@@ -27,8 +28,16 @@ router.get('/:id', (req, res) => {
                     model: PlantBasic,
                     attributes: ['botanicalName', 'commonName']
                 }
+            },
+            {
+                model: Comment,
+                attributes: [ 'id', 'title', 'commentText' ],
+                include: {
+                    model: Vote,
+                    attributes: [[fn('sum', col('upvote')), 'value']],
+                    group: ['value']
+                }
             }
-            // add vote functionality here
         ]
     })
         .then(dbUserData => {
@@ -80,6 +89,7 @@ router.post('/login', (req, res) => {
                 return;
             }
             const validPassword = dbUserData.comparePass(req.body.password);
+            // is comparePass the right function, ask Jon?
             if (!validPassword) {
                 res.status(400).json({ message: 'Invalid Password' });
                 return;

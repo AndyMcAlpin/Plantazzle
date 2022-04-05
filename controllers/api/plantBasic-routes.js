@@ -159,15 +159,21 @@ router.post('/', //withAuth,
         });
 });
 
-// router.put('/upvote', withAuth, (req, res) => {
-
-// router.put('/downvote', withAuth, (req, res) => {
-
 router.put('/:id', withAuth, (req, res) => {
     PlantBasic.update(
         {
-            // tbd
+            botanicalName: req.body.botanicalName,
+            commonName: req.body.commonName,
+            family: req.body.family,
+            origin: req.body.origin,
+            plantType: req.body.plantType,
+            zone: req.body.zone,
+            growthRate: req.body.zone,
+            height: req.body.height,
+            flowers: req.body.flowers,
+            toxicity: req.body.toxicity
         },
+        // maybe add sub tables
         {
             where: {
                 id: req.params.id
@@ -188,7 +194,7 @@ router.put('/:id', withAuth, (req, res) => {
 });
 
 router.delete('/:id', modAuth, (req, res) => {
-    this.post.destroy({
+    this.PlantBasic.destroy({
         where: {
             id: req.params.id
         }

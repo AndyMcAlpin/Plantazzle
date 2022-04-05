@@ -5,8 +5,11 @@ const withAuth = require('../../utils/auth');
 // const modAuth = require('../../utils/modAuth');
 const { fn, col } = require('sequelize');
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     Comment.findAll({
+        where: {
+            PlantBasic.id: req.params.id 
+        },
         attributes: [
             'id',
             'title',
@@ -15,13 +18,29 @@ router.get('/', (req, res) => {
         ],
         include: [
             {
+                model: PlantBasic,
+                attributes: [
+                    'id',
+                    'botanicalName',
+                    'commonName',
+                    'family',
+                    'origin',
+                    'plantType',
+                    'zone',
+                    'growthRate',
+                    'height',
+                    'flowers',
+                    'toxicity'
+                  ]
+            },
+            {
                 model: User,
                 attributes: ['username', 'zipCode']
             },
             {
-                model: Vote,
-                attributes: [[fn('sum', col('upvote')), 'value']],
-                group: ['value']
+                // model: Vote,
+                // attributes: [[fn('sum', col('upvote')), 'value']],
+                // group: ['value']
             }
         ]
     })
@@ -31,5 +50,7 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+// router.put('/upvote', withAuth, (req, res) => {
 
 module.exports = router;

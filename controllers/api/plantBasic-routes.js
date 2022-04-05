@@ -119,7 +119,7 @@ router.get('/:id', (req, res) => {
 router.post('/', //withAuth,
  (req, res) => {
     PlantBasic.create({
-        botanicalName: req.body.botanicalName, 
+        botanicalName: req.body.botanicalName,
         commonName: req.body.commonName,
         family: req.body.family,
         origin: req.body.origin,
@@ -129,30 +129,28 @@ router.post('/', //withAuth,
         height: req.body.height,
         flowers: req.body.flowers,
         toxicity: req.body.toxicity,
-        PlantPicture: {
-            filename: req.body.filename,
-            // filePath: req.body.filePath
+        PlantPictures: {
+          filename: req.body.filename
         },
-        // PlantGrowing: {
-        //     light: req.body.light,
-        //     temperature: req.body.temperature,
-        //     humidity: req.body.humidity,
-        //     soil: req.body.soil,
-        //     watering: req.body.watering,
-        //     fertilizing: req.body.fertilizing
-        // },
-        // PlantCare: {
-        //     leafCare: req.body.leafCare,
-        //     repotting: req.body.repotting,
-        //     pruningShaping: req.body.pruningShaping
-        // } 
+        PlantGrowing: {
+          light: req.body.light,
+          temperature: req.body.temperature,
+          humidity: req.body.humidity,
+          soil: req.body.soil,
+          watering: req.body.watering,
+          fertilizing: req.body.fertilizing
+        },
+        PlantCare: {
+          leafCare: req.body.leafCare,
+          repotting: req.body.repotting,
+          pruningShaping: req.body.pruningShaping
+        }
     }, {
-        include: [{
-            association: PlantBasic.PlantPicture
-            // [, PlantBasic.PlantCare, PlantBasic.PlantGrowing 
-            
-        // ]
-        }]
+        include: [
+          { association: PlantBasic.PlantPictures },
+          { association: PlantBasic.PlantGrowing },
+          { association: PlantBasic.PlantCare }
+        ]
     })
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {

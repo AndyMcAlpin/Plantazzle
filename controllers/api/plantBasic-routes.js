@@ -129,18 +129,18 @@ router.post('/', //withAuth,
         height: req.body.height,
         flowers: req.body.flowers,
         toxicity: req.body.toxicity,
-        // PlantPicture: {
-        //     filename: req.body.filename,
-        //     // filePath: req.body.filePath
-        // },
-        plant_growing: {
-            light: req.body.light,
-            temperature: req.body.temperature,
-            humidity: req.body.humidity,
-            soil: req.body.soil,
-            watering: req.body.watering,
-            fertilizing: req.body.fertilizing
+        PlantPicture: {
+            filename: req.body.filename,
+            // filePath: req.body.filePath
         },
+        // PlantGrowing: {
+        //     light: req.body.light,
+        //     temperature: req.body.temperature,
+        //     humidity: req.body.humidity,
+        //     soil: req.body.soil,
+        //     watering: req.body.watering,
+        //     fertilizing: req.body.fertilizing
+        // },
         // PlantCare: {
         //     leafCare: req.body.leafCare,
         //     repotting: req.body.repotting,
@@ -148,9 +148,9 @@ router.post('/', //withAuth,
         // } 
     }, {
         include: [{
-            association: 
-            // [PlantBasic.PlantPicture, PlantBasic.PlantCare, 
-            PlantBasic.PlantGrowing
+            association: PlantBasic.PlantPicture
+            // [, PlantBasic.PlantCare, PlantBasic.PlantGrowing 
+            
         // ]
         }]
     })

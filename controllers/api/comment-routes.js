@@ -11,12 +11,17 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'commentText',
-            // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE comment.id = vote.comment_id)'), 'vote_count']
+            // [sequelize.literal('(SELECT COUNT(*) FROM Vote WHERE comment.id = Vote.comment_id)'), 'Vote_count']
         ],
         include: [
             {
                 model: User,
                 attributes: ['username', 'zipCode']
+            },
+            {
+                model: Vote,
+                attributes: [[fn('sum', col('upvote')), 'value']],
+                group: ['value']
             }
         ]
     })

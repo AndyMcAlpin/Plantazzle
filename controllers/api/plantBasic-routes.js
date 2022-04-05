@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
-const { fn, col } = require('sequelize')
+const modAuth = require('../../utils/modAuth');
+const { fn, col } = require('sequelize');
 
 router.get('/', (req, res) => {
     PlantBasic.findAll({
@@ -39,11 +40,11 @@ router.get('/', (req, res) => {
                     model: User,
                     attributes: ['userName', 'zipCode']
                 },
-                {
-                    model: Vote,
-                    attributes: [[fn('sum', col('upvote')), 'value']],
-                    group: ['value']
-                }
+                // {
+                //     model: Vote,
+                //     attributes: [[fn('sum', col('upvote')), 'value']],
+                //     group: ['value']
+                // }
                 ]
             }
         ]
@@ -127,7 +128,31 @@ router.post('/', //withAuth,
         growthRate: req.body.growthRate,
         height: req.body.height,
         flowers: req.body.flowers,
-        toxicity: req.body.toxicity
+        toxicity: req.body.toxicity,
+        // PlantPicture: {
+        //     filename: req.body.filename,
+        //     // filePath: req.body.filePath
+        // },
+        plant_growing: {
+            light: req.body.light,
+            temperature: req.body.temperature,
+            humidity: req.body.humidity,
+            soil: req.body.soil,
+            watering: req.body.watering,
+            fertilizing: req.body.fertilizing
+        },
+        // PlantCare: {
+        //     leafCare: req.body.leafCare,
+        //     repotting: req.body.repotting,
+        //     pruningShaping: req.body.pruningShaping
+        // } 
+    }, {
+        include: [{
+            association: 
+            // [PlantBasic.PlantPicture, PlantBasic.PlantCare, 
+            PlantBasic.PlantGrowing
+        // ]
+        }]
     })
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {

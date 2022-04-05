@@ -10,10 +10,21 @@ function createChatMessage(user, msg) {
   container.scrollTop = container.scrollHeight
 }
 
-
 document.addEventListener('readystatechange', event => {
   if(document.readyState !== 'complete') return
   const socket = io()
+
+  socket.on('disable', isDisabled => {
+    const form = document.querySelector('#send-chat')
+    console.log(isDisabled)
+    if(isDisabled) {
+      form.querySelector('input').disabled = true
+      form.querySelector('button').disabled = true
+    } else {
+      form.querySelector('input').disabled = false
+      form.querySelector('button').disabled = false
+    }
+  })
 
   socket.on('new message', createChatMessage)
 

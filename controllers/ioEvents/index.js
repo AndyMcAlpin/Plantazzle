@@ -43,8 +43,7 @@ class Chat {
   }
 
   assignUsername() {
-    if(!this.has('username'))
-      this.set('username', `Guest(${nanoid((7))})`)
+    this.socket.emit('disable', !this.has('username'))
     return this
   }
 

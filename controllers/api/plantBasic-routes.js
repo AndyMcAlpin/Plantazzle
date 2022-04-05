@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { User, PlantBasic, MyPlant } = require('../../models');
+const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
+const { fn, col } = require('sequelize')
 
 router.get('/', (req, res) => {
     PlantBasic.findAll({
@@ -15,12 +16,37 @@ router.get('/', (req, res) => {
             'zone',
             'growthRate',
             'height',
-            // 'width'
             'flowers',
             'toxicity'
         ],
-        // plant comments togo here
-        // include: [other plant info tables]
+        include: [
+            {
+                model: PlantPicture,
+                attributes: ['id', 'filename', 'filePath']
+            },
+            {
+                model: PlantGrowing,
+                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
+            },
+            {
+                model: PlantCare,
+                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
+            },
+            {
+                model: Comment,
+                attributes: [ 'id', 'title', 'commentText' ],
+                include: [{
+                    model: User,
+                    attributes: ['userName', 'zipCode']
+                },
+                {
+                    model: Vote,
+                    attributes: [[fn('sum', col('upvote')), 'value']],
+                    group: ['value']
+                }
+                ]
+            }
+        ]
     })
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {
@@ -44,11 +70,37 @@ router.get('/:id', (req, res) => {
             'zone',
             'growthRate',
             'height',
-            // 'width'
             'flowers',
             'toxicity'
         ],
-        // include: plant info tables and plant comments
+        include: [
+            {
+                model: PlantPicture,
+                attributes: ['id', 'filename', 'filePath']
+            },
+            {
+                model: PlantGrowing,
+                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
+            },
+            {
+                model: PlantCare,
+                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
+            },
+            {
+                model: Comment,
+                attributes: [ 'id', 'title', 'commentText' ],
+                include: [{
+                    model: User,
+                    attributes: ['userName', 'zipCode']
+                },
+                {
+                    model: Vote,
+                    attributes: [[fn('sum', col('upvote')), 'value']],
+                    group: ['value']
+                }
+                ]
+            }
+        ]
     })
         .then(dbPlantBasicData => {
             if (!dbPlantBasicData) {
@@ -63,7 +115,8 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', //withAuth,
+ (req, res) => {
     PlantBasic.create({
         botanicalName: req.body.botanicalName, 
         commonName: req.body.commonName,
@@ -73,7 +126,6 @@ router.post('/', withAuth, (req, res) => {
         zone: req.body.zone,
         growthRate: req.body.growthRate,
         height: req.body.height,
-        // width: req.body.width,
         flowers: req.body.flowers,
         toxicity: req.body.toxicity
     })

@@ -8,7 +8,7 @@ const hb = require("handlebars")
 
 router.get ("/test", (req, res) => {
     hb.registerPartial("button", "{{MyButton}}") 
-    res.render ("Profile")
+    res.render ("profile")
 }) 
 
 

@@ -12,11 +12,9 @@ router.get ("/profile", (req, res) => {
     res.render ("Profile")
 })
 
-router.get('/modal', (req,res) => {
+router.get('/online/', (req,res) => {
 
-    res.render('Profile')
-
-    res.render ("profile")
+    res.render('')
 })
 
 

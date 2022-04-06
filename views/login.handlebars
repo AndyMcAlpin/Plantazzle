@@ -2,11 +2,11 @@
     <div class="columns is-justify-content-center is-align-items-center">
         <div class="column is-6-desktop is-10-tablet is-12-mobile is-justify-content-center is-flex is-flex-direction-column ml-4 p-0 card">
             <div class="column card-header has-background-primary has-shadow mb-4">
-                <h1 class="has-text-centered is-size-3 has-text-primary">Please input your information below!</h1>
+                <h1 class="has-text-centered is-size-3 has-text-white">Please input your information below!</h1>
             </div>
-            <body class="hero is-warning is-fullheight">
-            <form class="box has-background-warning-light" class="field" class="login-form" id="LogIn">
-                <div class="column">
+            <div class="column is-12 columns is-justify-content-center">
+                <form id="LogIn">
+                    <div class="column">
                         {{> form/input
                             column="is-12"
                             id="user-name"
@@ -25,12 +25,14 @@
                             colorClass="is-primary"
                             isRequired=true
                         }}
+                    </div>
+                    <div class="is-flex is-justify-content-center p-3 is-flex-direction-column">
                         <div class="column is-12 p-1">
                             <div class="is-flex is-justify-content-space-between">
                                 <button type="submit" class="button is-primary">Log in</button>
                             </div>
                         </div>
-
-            </form>
-            </body>
-<script src="/javascript/login.js"></script>
+                    </div>
+                </form>
+            </div>
+{{!-- <script src="/javascript/login.js"></script> --}}

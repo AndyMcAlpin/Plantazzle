@@ -1,12 +1,17 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../config/connection')
+const { attributes, columns, options } = require('./props')
 
-const { STRING, INTEGER, TEXT } = DataTypes
+const { STRING, INTEGER, TEXT, VIRTUAL } = DataTypes
 
 class ExtendedModel extends Model {
-  static include = {}
   static tableName = ''
   static modelName = ''
+  static QO = options
+
+  static defineColumns() {
+    return columns[this.modelName]
+  }
 
   static defineTable() {
     return {
@@ -19,6 +24,6 @@ class ExtendedModel extends Model {
       modelName: this.modelName
     }
   }
-}
+} 
 
-module.exports = { ExtendedModel, INTEGER, STRING, TEXT };
+module.exports = { ExtendedModel };

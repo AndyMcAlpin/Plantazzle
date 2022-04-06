@@ -15,13 +15,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
+    if (!req.session.loggedIn) {
         res.status(404).end();
-    }
+    } 
+        return req.session.destroy(() => {
+            res.status(204).end();
+        }); 
 });
 
 router.get('/:id', (req, res) => {

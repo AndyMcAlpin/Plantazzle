@@ -1,7 +1,43 @@
-<ol class="post-list">
-    {{#each posts as |post|}}
-    <li>
-        {{> post-info post }}
-    </li>
-    {{/each}}
-</ol>
+<div class="container">
+  <div class="tile is-ancestor">
+    <section class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          {{#each plant1 as | plant |}}
+            {{> plant/tile
+              id=plant.id
+              title=plant.botanicalName
+              subtitle=plant.commonName
+              plantFileName=plant.PlantPictures.0.filename }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    <section class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          {{#each plant2 as | plant |}}
+            {{> plant/tile
+              id=plant.id
+              title=plant.botanicalName
+              subtitle=plant.commonName
+              plantFileName=plant.PlantPictures.0.filename }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    <section class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          {{#each plant3 as | plant |}}
+            {{> plant/tile
+              id=plant.id
+              title=plant.botanicalName
+              subtitle=plant.commonName
+              plantFileName=plant.PlantPictures.0.filename }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

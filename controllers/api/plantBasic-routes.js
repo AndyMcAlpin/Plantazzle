@@ -6,49 +6,7 @@ const modAuth = require('../../utils/modAuth');
 const { fn, col } = require('sequelize');
 
 router.get('/', (req, res) => {
-    PlantBasic.findAll({
-        attributes: [
-            'id',
-            'botanicalName',
-            'commonName',
-            'family',
-            'origin',
-            'plantType',
-            'zone',
-            'growthRate',
-            'height',
-            'flowers',
-            'toxicity'
-        ],
-        include: [
-            {
-                model: PlantPicture,
-                attributes: ['id', 'filename', 'filePath']
-            },
-            {
-                model: PlantGrowing,
-                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
-            },
-            {
-                model: PlantCare,
-                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
-            },
-            {
-                model: Comment,
-                attributes: [ 'id', 'title', 'commentText' ],
-                include: [{
-                    model: User,
-                    attributes: ['userName', 'zipCode']
-                },
-                // {
-                //     model: Vote,
-                //     attributes: [[fn('sum', col('upvote')), 'value']],
-                //     group: ['value']
-                // }
-                ]
-            }
-        ]
-    })
+    req.plantBasicGetAll()
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {
             console.log(err);

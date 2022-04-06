@@ -44,7 +44,7 @@ app.use('/js', express.static(path.join(__dirname, 'public/javascript')));
 app.use('/css', express.static(path.join(__dirname, 'public/stylesheets')));
 app.use('/images', express.static(path.join(__dirname, 'public/assets/images')));
 
-app.use(require('./controllers/'));
+app.use(require('./controllers'));
 
 app.use("/",require("./views/mike"))
 // change name and location before finishing

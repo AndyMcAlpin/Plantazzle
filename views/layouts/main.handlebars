@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Plantazzle! </title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/Main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
 <body>
 <div class="wrapper">
-    <header>
+    <header class="is-flex is-justify-content-center is-size-1">
         <h1>
             <a href="/">One Stop Shop For Everything Botanical!</a>
         </h1>
@@ -20,15 +20,15 @@
                 <a href="/views/homepage.handlebars">Homepage</a>
                 <button id="logout" class="btn-no-style">logout</button>
             {{else}}
-                <a href="/views/login.handlebars">login</a>
+
             {{/if}}
         </nav>
     </header>
-    <main>
+    <main class="is-flex is-justify-content-center">
         {{{body}}}
     </main>
-    <footer>
-        Thanks for visiting
+    <footer class="is-flex is-justify-content-center is-size-1 is-italic">
+
     </footer>
 </div>
 

@@ -159,7 +159,9 @@ router.post('/', //withAuth,
         });
 });
 
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', 
+// withAuth, 
+(req, res) => {
     PlantBasic.update(
         {
             botanicalName: req.body.botanicalName,
@@ -193,7 +195,9 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', modAuth, (req, res) => {
+router.delete('/:id', 
+// modAuth,
+ (req, res) => {
     this.PlantBasic.destroy({
         where: {
             id: req.params.id

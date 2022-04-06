@@ -6,10 +6,7 @@ const withAuth = require('../../utils/auth');
 const { fn, col } = require('sequelize');
 
 router.get('/:id', (req, res) => {
-    Comment.findAll({
-        where: {
-            PlantBasic.id: req.params.id 
-        },
+    Comment.findByPk(req.params.id, {
         attributes: [
             'id',
             'title',
@@ -31,17 +28,17 @@ router.get('/:id', (req, res) => {
                     'height',
                     'flowers',
                     'toxicity'
-                  ]
+                ]
             },
             {
                 model: User,
                 attributes: ['username', 'zipCode']
             },
-            {
-                // model: Vote,
-                // attributes: [[fn('sum', col('upvote')), 'value']],
-                // group: ['value']
-            }
+            // {
+            //     model: Vote,
+            //     attributes: [[fn('sum', col('upvote')), 'value']],
+            //     group: ['value']
+            // }
         ]
     })
         .then(dbCommentData => res.json(dbCommentData))

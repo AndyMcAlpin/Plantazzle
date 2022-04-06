@@ -78,20 +78,10 @@ router.post('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    User,findOne({
-        where: {
-            email: req.body.email
-        }
-    })
+    User.authenticate(req.body.username, req.body.password)
         .then(dbUserData => {
             if (!dbUserData) {
                 res.status(400).json({ message: 'No User with that email' });
-                return;
-            }
-            const validPassword = dbUserData.comparePass(req.body.password);
-            // is comparePass the right function, ask Jon?
-            if (!validPassword) {
-                res.status(400).json({ message: 'Invalid Password' });
                 return;
             }
             req.session.save(() => {

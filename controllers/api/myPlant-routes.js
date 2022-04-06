@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', 
+// withAuth, 
+(req, res) => {
     MyPlant.findAll({
         where: {
             UserId: req.session.user_id
@@ -52,7 +54,9 @@ router.get('/', withAuth, (req, res) => {
         });
 });
 
-router.get('/:id', withAuth, (req, res) => {
+router.get('/:id', 
+// withAuth, 
+(req, res) => {
     MyPlant.findOne({
         where: {
             id: req.params.id,
@@ -109,7 +113,9 @@ router.get('/:id', withAuth, (req, res) => {
         });
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', 
+// withAuth, 
+(req, res) => {
     MyPlant.create({
         userId: req.session.user_id,
         // check this probably wrong, needs a FUNCTION
@@ -122,7 +128,9 @@ router.post('/', withAuth, (req, res) => {
         })
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', 
+// withAuth, 
+(req, res) => {
     MyPlant.destroy({
         where: {
             id: req.params.id

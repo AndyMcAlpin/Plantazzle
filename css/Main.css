@@ -1,3 +1,25 @@
-* {
-    align-content: center;
+
+
+.field {
+    margin: auto;
+    width: 50%;
+    border: 3px green;
+    padding: 10px;
+    
+
+    
+    
+
+}
+
+.label {
+
+}
+
+.control {
+
+}
+
+.wrapper {
+    text-align: center;
 }

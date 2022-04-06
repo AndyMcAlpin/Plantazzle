@@ -45,9 +45,9 @@ app.use('/css', express.static(path.join(__dirname, 'public/stylesheets')));
 app.use('/images', express.static(path.join(__dirname, 'public/assets/images')));
 
 app.use(require('./controllers/'));
+
 app.use("/",require("./views/mike"))
-
-
+// change name and location before finishing
 
 sequelize.sync({ force: false, logging: false }).then(() => {
     server.listen(PORT, () => console.log('Server started'));

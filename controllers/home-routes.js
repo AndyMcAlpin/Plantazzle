@@ -59,7 +59,6 @@ router.get('/', (req, res) => {
         });
 });
 
-// login page
 router.get('/sign-up', (req, res) => {
     res.render('sign_up');
 });

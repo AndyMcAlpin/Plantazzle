@@ -9,11 +9,44 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
-<body>
+<section class="hero is-info is-large">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+
+          <span class="navbar-burger" data-target="navbarMenuHeroB">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item is-active">
+              Home
+            </a>
+            <a class="navbar-item">
+              Profile
+            </a>
+            <a class="navbar-item">
+              FAQ
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+
 <div class="wrapper">
-    <header class="is-flex is-justify-content-center is-size-1">
-        <h1>
-            <a href="/">One Stop Shop For Everything Botanical!</a>
+    <header class="is-flex is-justify-content-center is-size-1 hero has-background-info">
+        <h1 class="has-text-warning">
+            <a href="/">P L A N T A Z Z L E</a>
         </h1>
         <nav>
             {{#if loggedin}}
@@ -25,9 +58,23 @@
         </nav>
     </header>
     <main class="is-flex is-justify-content-center">
+        <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="title">
+        One Stop Shop
+      </p>
+      <p class="subtitle">
+        For Everything Botanical
+      </p>
+    </div>
+  </div>
         {{{body}}}
     </main>
     <footer class="is-flex is-justify-content-center is-size-1 is-italic">
+          <div class="hero-foot">
+    
+  </div>
+</section>
 
     </footer>
 </div>

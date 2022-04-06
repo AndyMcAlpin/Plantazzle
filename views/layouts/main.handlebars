@@ -5,7 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Plantazzle! </title>
-        <link rel="stylesheet" href="/style.css">
+
+        <link rel="stylesheet" href="./stylesheets/style.css">
+
+         {{!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> --}}
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     </head>
 
@@ -13,7 +17,7 @@
         <div class="wrapper">
             <header>
                 <h1>
-                     <a href="/">One Stop Shop For Everything Botanical!</a>
+                    <p>One Stop Shop For Everything Botanical!</p>
                 </h1>
                 <nav>
                     {{#if loggedin}}
@@ -30,6 +34,7 @@
             <footer>
                 Thanks for visiting
             </footer>
+          <script src="/javascript/main.js"></script>
         </div>
 
         {{#if LogedIn}}

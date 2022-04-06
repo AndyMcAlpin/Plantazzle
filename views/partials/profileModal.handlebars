@@ -1,0 +1,27 @@
+<div class="is-flex" style="justify-content: center;">
+  <button class="button is-primary" open-modal>Please Click Here To Open Modal</button>
+</div>
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Create a Post</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <form>
+          {{> form/inputPrimary placeholder="Title" }}
+          {{> form/textareaPrimary placeholder="What would you like to say?"}}
+        </form>
+      </section>
+      <footer class="modal-card-foot">
+        <div class="is-grouped is-pulled-right">
+          <button class="button is-primary">Save changes</button>
+          <button class="button">Cancel</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

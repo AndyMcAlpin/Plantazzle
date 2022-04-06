@@ -102,7 +102,7 @@ class User extends ExtendedModel {
       const user = await this.getPasswordByUsername(username)
       if(!user) return false
       const isUser = await this.comparePass(password, user.password)
-      return !isUser ? false : this.byUsername(username)
+      return !isUser ? false : this.findOne({ where: { username }, attributes: {exclude: [ 'password' ] } })
     } catch(err) {
       return Promise.reject(err)
     }

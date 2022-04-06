@@ -24,13 +24,6 @@ class ExtendedModel extends Model {
       modelName: this.modelName
     }
   }
-
-  // static getAttributes(...exclude) {
-  //   return attributes[this.modelName].filter(attr => {
-  //     let isFound = exclude.find(str => str === attr)
-  //     return isFound !== undefined
-  //   })
-  // }
-}
+} 
 
 module.exports = { ExtendedModel };

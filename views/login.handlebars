@@ -1,33 +1,36 @@
-<form class="login-form">
-    <div>
-        <label for="email-login">email:</label>
-        <input type="text" id="email-login" />
+<body class="hero is-warning is-fullheight">
+<form class="box has-background-warning-light" class="field" class="login-form" id="LogIn">
+    <div class="label">
+        <label class="label" for="email-login"></label>
+        <div>
+            <input class="control" type="text" id="email-login" placeholder="email"/>
+        </div>
     </div>
     <div>
-        <label for="password-login">password:</label>
-        <input type="password" id="password-login" />
+        <label for="password-login"></label>
+        <input type="password" id="password-login" placeholder="password"/>
     </div>
     <div>
         <button type="submit">login</button>
     </div>
 </form>
 
-<form class="signup-form">
-    <div>
-        <label for="username-signup">username:</label>
-        <input type="text" id="username-signup" />
+<form class="box has-background-success-light px-1" class="field" class="signup-form" id="SignUp">
+    <div class="label">
+        <label class="label" for="email-signup"></label>
+        <div>
+            <input type="text" id="email-signup" placeholder="email"/>
+        </div>
     </div>
-    <div>
-        <label for="email-signup">email:</label>
-        <input type="text" id="email-signup" />
-    </div>
-    <div>
-        <label for="password-signup">password:</label>
-        <input type="password" id="password-signup" />
+    <div class="label">
+        <label class="label" for="password-signup"></label>
+        <div>
+            <input type="password" id="password-signup" placeholder="password"/>
+        </div>
     </div>
     <div>
         <button type="submit">signup</button>
     </div>
 </form>
-
+</body>
 <script src="/javascript/login.js"></script>

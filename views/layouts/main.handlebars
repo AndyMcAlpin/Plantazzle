@@ -16,13 +16,13 @@
                 <a href="/">P L A N T A Z Z L E</a>
             </h1>
             <nav class="navbar has-background-info is-size-1">
-                <a href="/">Home</a>
+                <a href="/" class="button is-info">Home</a>
                 {{#if loggedIn}}
-                <a href="/dashboard">dashboard</a>
-                <button id="logout" class="btn-no-style">logout</button>
+                <a href="/dashboard" class="button is-info">dashboard</a>
+                <a href="/logout" id="logout" class="button is-info">logout</a>
                 {{else}}
-                <a href="/login">login</a>
-                <a href="/sign-up">Sign Up</a>
+                <a href="/login" class="button is-info">login</a>
+                <a href="/sign-up" class="button is-info">Sign Up</a>
                 {{/if}}
             </nav>
         </header>
@@ -37,13 +37,10 @@
             </div>
         </footer>
     </div>
-    {{#if LogedIn}}
+    {{#if LoggedIn}}
     <script src="/javascript/logout.js"></script>
     {{/if}}
 
-{{#if LogedIn}}
-    <script src="/views/homepage.handlebars"></script>
-{{/if}}
 
 <script src="/js/main.js"></script>
 <script src="/js/login.js"></script>

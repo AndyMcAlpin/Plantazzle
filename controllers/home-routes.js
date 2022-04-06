@@ -2,77 +2,77 @@ const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
 
 // get all of PlantBasic info for homepage
-router.get('/', (req, res) => {
-    PlantBasic.findAll({
-        attributes: [
-            'id',
-            'botanicalName',
-            'commonName',
-            'family',
-            'origin',
-            'plantType',
-            'zone',
-            'growthRate',
-            'height',
-            'flowers',
-            'toxicity'
-        ],
-        include: [
-            {
-                model: PlantPicture,
-                attributes: ['id', 'filename', 'filePath']
-            },
-            {
-                model: PlantGrowing,
-                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
-            },
-            {
-                model: PlantCare,
-                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
-            },
-            {
-                model: Comment,
-                attributes: [ 'id', 'title', 'commentText' ],
-                include: [{
-                    model: User,
-                    attributes: ['userName', 'zipCode']
-                },
-                // {
-                //     model: Vote,
-                //     attributes: [[fn('sum', col('upvote')), 'value']],
-                //     group: ['value']
-                // }
-                ]
-            }
-        ]
-    })
-        .then(dbPlantBasicData => {
-            const plantData = dbPlantBasicData.map(plantBasic => plantBasic.get({ plain: true }));
+// router.get('/', (req, res) => {
+//     PlantBasic.findAll({
+//         attributes: [
+//             'id',
+//             'botanicalName',
+//             'commonName',
+//             'family',
+//             'origin',
+//             'plantType',
+//             'zone',
+//             'growthRate',
+//             'height',
+//             'flowers',
+//             'toxicity'
+//         ],
+//         include: [
+//             {
+//                 model: PlantPicture,
+//                 attributes: ['id', 'filename', 'filePath']
+//             },
+//             {
+//                 model: PlantGrowing,
+//                 attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
+//             },
+//             {
+//                 model: PlantCare,
+//                 attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
+//             },
+//             {
+//                 model: Comment,
+//                 attributes: [ 'id', 'title', 'commentText' ],
+//                 include: [{
+//                     model: User,
+//                     attributes: ['userName', 'zipCode']
+//                 },
+//                 // {
+//                 //     model: Vote,
+//                 //     attributes: [[fn('sum', col('upvote')), 'value']],
+//                 //     group: ['value']
+//                 // }
+//                 ]
+//             }
+//         ]
+//     })
+//         .then(dbPlantBasicData => {
+//             const plantData = dbPlantBasicData.map(plantBasic => plantBasic.get({ plain: true }));
 
-            res.render('homepage', {
-                plantData
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+//             res.render('homepage', {
+//                 plantData
+//             });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+// });
 
 router.get('/sign-up', (req, res) => {
     res.render('sign_up');
 });
 
 router.get('/login', (req, res) => {
-    /*if (req.session.loggedIn) {
-        change to dashboard?
+    if (req.session.loggedIn) {
+        
         res.redirect('/');
         return;
-    }*/
+    }
     res.render('login')
 })
 
-router.get('/testing-homepage', (req, res) => {
+router.get('/', (req, res) => {
     req.plantBasicGetAll({ nested: true })
       .then(plantBasics => {
           const plantsJson = JSON.parse(JSON.stringify(plantBasics))
@@ -82,7 +82,7 @@ router.get('/testing-homepage', (req, res) => {
               plant2: plantsJson.splice(0, chunk),
               plant3: plantsJson.splice(0, chunk)
           }
-          return res.render('homepage', { ...plants })
+          return res.render('homepage', { ...plants, loggedIn: req.session.loggedIn })
       })
       .catch(err => {
           console.error(err)

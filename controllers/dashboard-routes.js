@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
+const withAuth = require('../utils/auth');
 
 // get all myPlants for dashboard
 router.get('/', withAuth, (req, res) => {

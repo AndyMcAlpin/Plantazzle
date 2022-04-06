@@ -19,10 +19,16 @@ router.get('/modal', (req,res) => {
     res.render ("profile")
 })
 
-//router.get('/chat', (req, res) => {
-   // res.render('chat')
 
+router.get('/sign-up', (req, res) => {
+    res.render('sign_up')
 })
+
+router.get('/chat', (req, res) => {
+   res.render('chat')
+})
+
+
 
 
 module.exports = router

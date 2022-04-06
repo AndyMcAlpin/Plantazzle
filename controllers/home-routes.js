@@ -60,6 +60,16 @@ router.get('/', (req, res) => {
         });
 });
 
+// login page
+router.get('/login', (req, res) => {
+    // if (req.session.loggedIn) {
+    //     // change to dashboard?
+    //     res.redirect('/');
+    //     return;
+    // }
+    res.render('sign_up');
+});
+
 // single plant page
 router.get('/:id', (req, res) => {
     PlantBasic.findOne({
@@ -123,16 +133,6 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-});
-
-// login page
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        // change to dashboard?
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
 });
 
 module.exports = router;

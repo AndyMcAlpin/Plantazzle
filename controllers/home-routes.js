@@ -67,7 +67,7 @@ router.get('/login', (req, res) => {
     //     res.redirect('/');
     //     return;
     // }
-    res.render('sign_up');
+    res.render('login');
 });
 
 // single plant page

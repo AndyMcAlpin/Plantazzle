@@ -117,7 +117,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', //withAuth,
- (req, res) => {
+(req, res) => {
     PlantBasic.create({
         botanicalName: req.body.botanicalName,
         commonName: req.body.commonName,
@@ -130,26 +130,26 @@ router.post('/', //withAuth,
         flowers: req.body.flowers,
         toxicity: req.body.toxicity,
         PlantPictures: {
-          filename: req.body.filename
+            filename: req.body.filename
         },
         PlantGrowing: {
-          light: req.body.light,
-          temperature: req.body.temperature,
-          humidity: req.body.humidity,
-          soil: req.body.soil,
-          watering: req.body.watering,
-          fertilizing: req.body.fertilizing
+            light: req.body.light,
+            temperature: req.body.temperature,
+            humidity: req.body.humidity,
+            soil: req.body.soil,
+            watering: req.body.watering,
+            fertilizing: req.body.fertilizing
         },
         PlantCare: {
-          leafCare: req.body.leafCare,
-          repotting: req.body.repotting,
-          pruningShaping: req.body.pruningShaping
+            leafCare: req.body.leafCare,
+            repotting: req.body.repotting,
+            pruningShaping: req.body.pruningShaping
         }
     }, {
         include: [
-          { association: PlantBasic.PlantPictures },
-          { association: PlantBasic.PlantGrowing },
-          { association: PlantBasic.PlantCare }
+            { association: PlantBasic.PlantPictures },
+            { association: PlantBasic.PlantGrowing },
+            { association: PlantBasic.PlantCare }
         ]
     })
         .then(dbPlantBasicData => res.json(dbPlantBasicData))

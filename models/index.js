@@ -29,10 +29,10 @@ User.hasMany(MyPlant, uPkFk)
 User.hasMany(Vote, uPkFk)
 
 PlantBasic.hasOne(MyPlant, pPkFk)
-PlantBasic.hasMany(PlantPicture, pPkFk)
 PlantBasic.hasMany(Comment, pPkFk)
-PlantBasic.hasOne(PlantGrowing, pPkFk)
-PlantBasic.hasOne(PlantCare, pPkFk)
+PlantBasic.PlantPictures = PlantBasic.hasMany(PlantPicture, pPkFk)
+PlantBasic.PlantGrowing = PlantBasic.hasOne(PlantGrowing, pPkFk)
+PlantBasic.PlantCare = PlantBasic.hasOne(PlantCare, pPkFk)
 
 MyPlant.belongsTo(PlantBasic, pPkFk)
 MyPlant.belongsTo(User, uPkFk)

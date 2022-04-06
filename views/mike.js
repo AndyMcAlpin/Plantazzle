@@ -8,8 +8,27 @@ const hb = require("handlebars")
 
 router.get ("/profile", (req, res) => {
     hb.registerPartial("button", "{{MyButton}}") 
+
+    res.render ("Profile")
+})
+
+router.get('/modal', (req,res) => {
+
+    res.render('Profile')
+
     res.render ("profile")
-}) 
+})
+
+
+router.get('/sign-up', (req, res) => {
+    res.render('sign_up')
+})
+
+router.get('/chat', (req, res) => {
+   res.render('chat')
+})
+
+
 
 
 module.exports = router

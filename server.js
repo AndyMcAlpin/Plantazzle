@@ -46,7 +46,7 @@ app.use('/images', express.static(path.join(__dirname, 'public/assets/images')))
 
 app.use(require('./controllers'));
 
-app.use("/",require("./views/mike"))
+// app.use("/",require("./views/mike"))
 // change name and location before finishing
 
 sequelize.sync({ force: false, logging: false }).then(() => {

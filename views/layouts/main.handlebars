@@ -5,86 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Plantazzle! </title>
-    <link rel="stylesheet" href="/css/Main.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
-<section class="hero is-info is-large">
-  <div class="hero-head">
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-
-          <span class="navbar-burger" data-target="navbarMenuHeroB">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenuHeroB" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item is-active">
-              Home
-            </a>
-            <a class="navbar-item">
-              Profile
-            </a>
-            <a class="navbar-item">
-              FAQ
-            </a>
-            
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
-
-
-
-
-
-<div class="wrapper">
-    <header class="is-flex is-justify-content-center is-size-1 hero has-background-info">
-        <h1 class="has-text-warning">
-            <a href="/">P L A N T A Z Z L E</a>
-        </h1>
-        <nav>
-            {{#if loggedin}}
-                <a href="/views/homepage.handlebars">Homepage</a>
+<body>
+    <div class="wrapper is-full">
+        <header class="is-flex is-justify-content-space-between is-full has-background-info">
+            <h1 class="has-text-warning is-size-1">
+                <a href="/">P L A N T A Z Z L E</a>
+            </h1>
+            <nav class="navbar has-background-info is-size-1">
+                <a href="/">Home</a>
+                {{#if loggedIn}}
+                <a href="/dashboard">dashboard</a>
                 <button id="logout" class="btn-no-style">logout</button>
-            {{else}}
+                {{else}}
+                <a href="/login">login</a>
+                {{/if}}
+            </nav>
+        </header>
 
-            {{/if}}
-        </nav>
-    </header>
-    <main class="is-flex is-justify-content-center">
-        <div class="hero-body">
-    <div class="container has-text-centered">
-      <p class="title">
-        One Stop Shop
-      </p>
-      <p class="subtitle">
-        For Everything Botanical
-      </p>
+        <main class="is-flex is-justify-content-center my-5">
+            {{{body}}}
+        </main>
+        <footer class="is-flex is-justify-content-center is-size-1 is-italic footer">
+            <div class="container has-text-centered">
+                <p class="title">One Stop Shop</p>
+                <p class="subtitle">For Everything Botanical</p>
+            </div>
+        </footer>
     </div>
-  </div>
-        {{{body}}}
-    </main>
-    <footer class="is-flex is-justify-content-center is-size-1 is-italic">
-          <div class="hero-foot">
-    
-  </div>
-</section>
-
-    </footer>
-</div>
-
-{{#if LogedIn}}
-    <script src="/views/homepage.handlebars"></script>
-{{/if}}
-
-<script src="/js/login.js"></script>
+    {{#if LogedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
 </body>
 
-
 </html>
+

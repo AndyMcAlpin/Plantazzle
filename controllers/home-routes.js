@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
 
 // get all of PlantBasic info for homepage
@@ -61,14 +60,36 @@ router.get('/', (req, res) => {
 });
 
 // login page
-router.get('/login', (req, res) => {
-    // if (req.session.loggedIn) {
-    //     // change to dashboard?
-    //     res.redirect('/');
-    //     return;
-    // }
+router.get('/sign-up', (req, res) => {
     res.render('sign_up');
 });
+
+router.get('/login', (req, res) => {
+    /*if (req.session.loggedIn) {
+        change to dashboard?
+        res.redirect('/');
+        return;
+    }*/
+    res.render('login')
+})
+
+router.get('/testing-homepage', (req, res) => {
+    req.plantBasicGetAll({ nested: true })
+      .then(plantBasics => {
+          const plantsJson = JSON.parse(JSON.stringify(plantBasics))
+          const chunk = Math.ceil(plantsJson.length / 3)
+          const plants = {
+              plant1: plantsJson.splice(0, chunk),
+              plant2: plantsJson.splice(0, chunk),
+              plant3: plantsJson.splice(0, chunk)
+          }
+          return res.render('homepage', { ...plants })
+      })
+      .catch(err => {
+          console.error(err)
+          res.status(500).json({ message: 'Internal Server Error', code: 500 })
+      })
+})
 
 // single plant page
 router.get('/:id', (req, res) => {

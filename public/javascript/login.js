@@ -46,25 +46,27 @@ async function loginFormHandler(event) {
     }
   }
   
-  async function signupFormHandler(event) {
-    event.preventDefault();
-    try {
-      const selectors = ['#first-name', '#last-name', '#email', '#username', '#password1', '#password2']
-      const [ firstName, lastName, email, username, pass1, pass2 ] = await dataAsst.getInputValue(...selectors)
-      if(pass1 !== pass2) return // handle mismatch passwords
-      const password = pass1
-      const response = await dataAsst.post('/api/users', { firstName, lastName, email, username, password })
-      if(response.ok) return document.location.replace('/')
-      console.error(response.statusText) // Handle error
-    } catch(err) {
-      if(err.reason === 'empty') {
-        // one of the values were empty
-        // Handle this from the form side.
-      }
+async function signupFormHandler(event) {
+  event.preventDefault();
+  try {
+    const selectors = ['#first-name', '#last-name', '#email', '#zip-code', '#username', '#password1', '#password2']
+    const [ firstName, lastName, email, zipCode, username, pass1, pass2 ] = await dataAsst.getInputValue(...selectors)
+    if(pass1 !== pass2) return // handle mismatch passwords
+    const password = pass1
+    const response = await dataAsst.post('/api/users', { firstName, lastName, email, username, password, zipCode })
+    if(response.ok) return document.location.replace('/')
+    console.error(response.statusText) // Handle error
+  } catch(err) {
+    if(err.reason === 'empty') {
+      // one of the values were empty
+      // Handle this from the form side.
     }
   }
-  
-  document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
-  
-  document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+}
+
+//document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+
+document.querySelector('#sign-up').addEventListener('submit', signupFormHandler);
+
+
   

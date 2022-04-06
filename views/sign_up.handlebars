@@ -5,7 +5,7 @@
                 <h1 class="has-text-centered is-size-3 has-text-white">Please input your information below!</h1>
             </div>
             <div class="column is-12 columns is-justify-content-center">
-                <form>
+                <form id="sign-up">
                     <div class="column">
                         {{> form/input
                             column="is-12"
@@ -31,6 +31,15 @@
                                 type="email"
                                 label="Email"
                                 placeholder="Example: exam@example.com"
+                                colorClass="is-primary"
+                                isRequired=true
+                        }}
+                        {{> form/input
+                                column="is-12"
+                                id="zip-code"
+                                type="zipCode"
+                                label="Zip Code"
+                                placeholder="Example: 78664"
                                 colorClass="is-primary"
                                 isRequired=true
                         }}

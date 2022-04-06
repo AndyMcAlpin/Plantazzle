@@ -64,9 +64,16 @@ async function signupFormHandler(event) {
   }
 }
 
-//document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+(() => {
+  run = [
+    { selector: '#login-form', handler: loginFormHandler },
+    { selector: '#sign-up', handler: signupFormHandler }
+  ]
+  const get = obj => obj.element = document.querySelector(obj.selector)
 
-document.querySelector('#sign-up').addEventListener('submit', signupFormHandler);
-
-
+  for(let obj of run) {
+    get(obj)
+    if(obj.element) obj.element.addEventListener('submit', obj.handler)
+  }
+})()
   

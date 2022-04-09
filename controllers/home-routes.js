@@ -91,7 +91,7 @@ router.get('/', (req, res) => {
 });
 
 // single plant page
-router.get('/:id', (req, res) => {
+router.get('/plant/:id', (req, res) => {
     PlantBasic.findOne({
         where: {
             id: req.params.id

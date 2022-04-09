@@ -3,7 +3,7 @@ const router = require('express').Router();
 const apiRoutes = require('./api/');
 const homeRoutes = require('./home-routes.js');
 const dashboardRoutes = require('./dashboard-routes.js');
-const {PlantBasic, PlantPicture, PlantGrowing, PlantCare, Comment, User} = require("../models");
+const {PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, User} = require("../models");
 
 /**
  * This middleware setup allows us to keep the PlantBasic.findAll for the get('/api/plants') route and the
@@ -12,6 +12,7 @@ const {PlantBasic, PlantPicture, PlantGrowing, PlantCare, Comment, User} = requi
  */
 router.use((req, res, next) => {
 
+  console.log(req.session)
   req.myPlantGetAll = options => MyPlant.findAll({
     ...!options ? {} : options,
     where: {

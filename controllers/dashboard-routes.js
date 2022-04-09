@@ -59,11 +59,13 @@ const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
     req.myPlantGetAll({ nested: true })
-      .then(myPlant => {
-          const myPlantsJson = JSON.parse(JSON.stringify(myPlant))
-          const chunk = Math.ceil(myPlantsJson.length / 3)
-          const plantsMine = {
-              plant1: myPlantsJson.splice(0, chunk),
+        .then(myPlant => {
+            console.log(JSON.stringify(myPlant,null,2))
+            const myPlantsJson = JSON.parse(JSON.stringify(myPlant))
+            const chunk = Math.floor(myPlantsJson.length / 3)
+            const chunkFinal = Math.ceil(myPlantsJson.length / 3)
+            const plantsMine = {
+                plant1: myPlantsJson.splice(0, chunkFinal),
               plant2: myPlantsJson.splice(0, chunk),
               plant3: myPlantsJson.splice(0, chunk)
           }

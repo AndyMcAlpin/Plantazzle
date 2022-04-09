@@ -1,0 +1,39 @@
+<div class="modal" id="plant-modal">
+  <div class="modal-background">
+  </div>
+  <div class="modal-content">
+    <div class="modal-card">
+      <header class="modal-card-head is-flex-wrap-wrap is-flex-direction-column">
+        <h3 class="is-size-3 has-text-centered modal-card-title" plant-modal="botanicalName">Amaranthus macrocarpus Benth.
+          <legend class="is-size-4 has-text-center" plant-modal="commonName">
+            Dwarf Amaranth
+          </legend>
+        </h3>
+      </header>
+      <section class="modal-card-body columns is-justify-content-center is-flex-wrap-wrap section">
+          {{> plant/basicData
+            color="is-primary"
+            title="Plant Basics"
+            id="PlantBasics"
+            columns='[{"name":"Family","id":"family"},{"name":"Origin","id":"origin"},{"name":"Plant Type","id":"plantType"},{"name":"Zone","id":"zone"},{"name":"Growth Rate","id":"growthRate"},{"name":"Height","id":"height"},{"name":"Flowers","id":"flowers"},{"name":"Toxicity","id":"toxicity"}]'
+          }}
+          {{> plant/basicData
+            color="is-primary"
+            title="Plant Growing"
+            id="PlantGrowing"
+            columns='[{"name":"Light","id":"light"},{"name":"Temperature","id":"temperature"},{"name":"Humidity","id":"humidity"},{"name":"Soil","id":"soil"},{"name":"Watering","id":"watering"},{"name":"Fertilizing","id":"fertilizing"}]'
+          }}
+          {{> plant/basicData
+            color="is-primary"
+            title="Plant Care"
+            id="PlantCare"
+            columns='[{"id":"leafCare","name":"Leaf Care"},{"id":"repotting","name":"Repotting"},{"id":"pruningShaping","name":"Pruning Shaping"}]'
+          }}
+      </section>
+      <footer class="modal-card-foot is-grouped is-pulled-right">
+        <button class="button is-primary">Save changes</button>
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
+</div>

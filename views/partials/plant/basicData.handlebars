@@ -1,0 +1,9 @@
+<article class="panel column is-12 {{color}} section p-0" plant-modal="{{id}}">
+  <h3 class="is-size-3 panel-heading has-text-centered">{{title}}</h3>
+  {{#parseJson columns}}
+    {{#each this as | column | }}
+      {{> plant/column column}}
+    {{/each}}
+  {{/parseJson}}
+
+</article>

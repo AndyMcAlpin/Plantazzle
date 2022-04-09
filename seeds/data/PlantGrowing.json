@@ -1,0 +1,161 @@
+[{
+  "PlantBasicId": 1,
+  "light": 86,
+  "temperature": 56,
+  "humidity": 98,
+  "soil": "St. Augustine Grass",
+  "watering": "Sweetleaf",
+  "fertilizing": "New Mexico Bluegrass"
+}, {
+  "PlantBasicId": 2,
+  "light": 43,
+  "temperature": 68,
+  "humidity": 95,
+  "soil": "Goldencarpet Buckwheat",
+  "watering": "Sparse-leaved St. Johnswort",
+  "fertilizing": "Horseflyweed"
+}, {
+  "PlantBasicId": 3,
+  "light": 35,
+  "temperature": 96,
+  "humidity": 52,
+  "soil": "Little Beaksedge",
+  "watering": "Rock Nettle",
+  "fertilizing": "California Broomrape"
+}, {
+  "PlantBasicId": 4,
+  "light": 31,
+  "temperature": 68,
+  "humidity": 61,
+  "soil": "Blue Ridge Goldenrod",
+  "watering": "Old World Flatsedge",
+  "fertilizing": "Polyblastia Lichen"
+}, {
+  "PlantBasicId": 5,
+  "light": 63,
+  "temperature": 67,
+  "humidity": 79,
+  "soil": "Alaskan Rim Lichen",
+  "watering": "Plains Muhly",
+  "fertilizing": "Aretillo"
+}, {
+  "PlantBasicId": 6,
+  "light": 70,
+  "temperature": 37,
+  "humidity": 40,
+  "soil": "Helietta",
+  "watering": "Brandegee's Desertparsley",
+  "fertilizing": "Velvety Goldenrod"
+}, {
+  "PlantBasicId": 7,
+  "light": 53,
+  "temperature": 62,
+  "humidity": 98,
+  "soil": "Nuttall's Sensitive-briar",
+  "watering": "Hooker's Eryngo",
+  "fertilizing": "Ceanothus"
+}, {
+  "PlantBasicId": 8,
+  "light": 75,
+  "temperature": 99,
+  "humidity": 67,
+  "soil": "Carolina Fluffgrass",
+  "watering": "Buffelgrass",
+  "fertilizing": "Lempholemma Lichen"
+}, {
+  "PlantBasicId": 9,
+  "light": 71,
+  "temperature": 63,
+  "humidity": 37,
+  "soil": "Marsh Sandwort",
+  "watering": "Big-sage",
+  "fertilizing": "Tall Annual Willowherb"
+}, {
+  "PlantBasicId": 10,
+  "light": 92,
+  "temperature": 85,
+  "humidity": 80,
+  "soil": "Ironweed",
+  "watering": "San Joaquin Dodder",
+  "fertilizing": "Branched Lagophylla"
+}, {
+  "PlantBasicId": 11,
+  "light": 96,
+  "temperature": 95,
+  "humidity": 70,
+  "soil": "Pumpelly's Brome",
+  "watering": "Cascara Buckthorn",
+  "fertilizing": "Red Inkplant"
+}, {
+  "PlantBasicId": 12,
+  "light": 84,
+  "temperature": 85,
+  "humidity": 60,
+  "soil": "Bog Birch",
+  "watering": "Darlington Oak",
+  "fertilizing": "Kyasuma Grass"
+}, {
+  "PlantBasicId": 13,
+  "light": 65,
+  "temperature": 51,
+  "humidity": 57,
+  "soil": "Silver Lupine",
+  "watering": "Dot Lichen",
+  "fertilizing": "Limprichtia Moss"
+}, {
+  "PlantBasicId": 14,
+  "light": 62,
+  "temperature": 54,
+  "humidity": 83,
+  "soil": "Cumberland Rosinweed",
+  "watering": "Loeskypnum Moss",
+  "fertilizing": "Devil In The Bush"
+}, {
+  "PlantBasicId": 15,
+  "light": 82,
+  "temperature": 31,
+  "humidity": 100,
+  "soil": "Waterer's Cotoneaster",
+  "watering": "Pereskia",
+  "fertilizing": "New Mexico Rim Lichen"
+}, {
+  "PlantBasicId": 16,
+  "light": 48,
+  "temperature": 77,
+  "humidity": 81,
+  "soil": "Costa Rican Jatropha",
+  "watering": "Small Prescott Orchid",
+  "fertilizing": "Largepod Pinweed"
+}, {
+  "PlantBasicId": 17,
+  "light": 77,
+  "temperature": 46,
+  "humidity": 73,
+  "soil": "Jelly Lichen",
+  "watering": "Rock Indian Breadroot",
+  "fertilizing": "Eared Fescue"
+}, {
+  "PlantBasicId": 18,
+  "light": 71,
+  "temperature": 76,
+  "humidity": 43,
+  "soil": "New Mexico False Yucca",
+  "watering": "Zelometeorium Moss",
+  "fertilizing": "Selwyn's Atrichum Moss"
+}, {
+  "PlantBasicId": 19,
+  "light": 65,
+  "temperature": 73,
+  "humidity": 94,
+  "soil": "Rhynchospora",
+  "watering": "Gregg's Amaranth",
+  "fertilizing": "Chiricahua Mountain Tansyaster"
+}, {
+  "PlantBasicId": 20,
+  "light": 49,
+  "temperature": 74,
+  "humidity": 93,
+  "soil": "Scarlet Runner",
+  "watering": "Thread Lichen",
+  "fertilizing": "Succisa"
+}]

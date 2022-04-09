@@ -119,18 +119,20 @@ router.post('/', //withAuth,
         });
 });
 
-router.post('/upload_photo', upload.single('avatar'), function (req, res, next) {
-PlantPicture.create(
+router.post('/upload_photo', upload.single('file'), function (req, res, next) {
+  console.log(req.PlantBasicId)
+  console.log(req.file)
+  PlantPicture.create(
         {
-        filename: req.fieldname,
-        filePath: req.file
+        PlantBasicId: req.PlantBasicId,
+        file: req.file
         }
-    ) 
+    )
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
-        });            
+        });
 });
 
 router.put('/:id', 

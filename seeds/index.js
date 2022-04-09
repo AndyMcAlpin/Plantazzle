@@ -1,5 +1,8 @@
+const { join } = require('path')
+global.__rootdir = join(`${__dirname}/..`)
+
 const dropSchema = require('./dropSchema')
-const { rm, mkdir } = require('fs/promises')
+const { readFile, writeFile, rm, mkdir } = require('fs/promises')
 const { User, MyPlant, PlantBasic, PlantPicture, Comment, Vote, PlantGrowing, PlantCare } = require('../models')
 const {
   userData,
@@ -11,7 +14,6 @@ const {
   plantCareData,
   plantGrowingData
 } = require('./data')
-const {plant} = require("lodash/seq");
 
 
 const seedPlantPicture = async () => {
@@ -23,7 +25,12 @@ const seedPlantPicture = async () => {
   // Creating the directory
   await mkdir(dirPath)
 
-  for(let image of plantPictureData) await PlantPicture.create(image, { logging: false })
+  for(let image of plantPictureData) {
+    image.file.path = `${image.file.destination}/${image.file.filename}`
+    const tmpImage = await readFile(image.path)
+    await writeFile(image.file.path, tmpImage)
+    await PlantPicture.create(image, { logging: false })
+  }
 }
 
 const sync = async () => {

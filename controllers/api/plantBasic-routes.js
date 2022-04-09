@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const multer = require('multer');
+const upload = multer({ dest: './public/assets/images' });
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');

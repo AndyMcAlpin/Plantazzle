@@ -14,8 +14,17 @@ router.get('/', (req, res) => {
         });
 });
 
+router.post('/logout', (req, res) => {
+    if (!req.session.loggedIn) {
+        res.status(404).end();
+    } 
+        return req.session.destroy(() => {
+            res.status(204).end();
+        }); 
+});
+
 router.get('/:id', (req, res) => {
-    User.findOne({
+    return User.findOne({
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
@@ -77,6 +86,7 @@ router.post('/', (req, res) => {
         });
 });
 
+
 router.post('/login', (req, res) => {
     User.authenticate(req.body.username, req.body.password)
         .then(dbUserData => {
@@ -94,15 +104,7 @@ router.post('/login', (req, res) => {
         });
 });
 
-router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
+
 
 // resolve hooks before writing
 // router.put('/:id')

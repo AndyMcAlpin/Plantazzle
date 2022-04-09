@@ -5,41 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Plantazzle! </title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
-      <body>
-        <div class="wrapper">
-          <header class="is-flex is-size-1 has-background-info is-justify-content-space-between">
-            <h1 class="has-text-warning">
-              <a href="/">P L A N T A Z Z L E</a>
+<body>
+    <div class="wrapper is-full">
+        <header class="is-flex is-justify-content-space-between is-full has-background-info">
+            <h1 class="has-text-warning is-size-1">
+                <a href="/">P L A N T A Z Z L E</a>
             </h1>
-            <nav class="navbar">
-              <a href="/">Home</a>
-              {{#if loggedIn}}
-                <a href="/dashboard">dashboard</a>
-                <button id="logout" class="btn-no-style">logout</button>
-              {{else}}
-                <a href="/login">login</a>
-              {{/if}}
+            <nav class="navbar has-background-info is-size-1">
+                <a href="/" class="button is-info">Home</a>
+                {{#if loggedIn}}
+                <a href="/dashboard" class="button is-info">dashboard</a>
+                <a id="logout" class="button is-info">logout</a>
+                {{else}}
+                <a href="/login" class="button is-info">login</a>
+                <a href="/sign-up" class="button is-info">Sign Up</a>
+                {{/if}}
             </nav>
-          </header>
-    <main class="is-flex is-justify-content-center">
-        {{{body}}}
-    </main>
-    <footer class="is-flex is-justify-content-center is-size-1 is-italic">
+        </header>
 
-    </footer>
-</div>
+        <main class="is-flex is-justify-content-center my-5">
+            {{{body}}}
+        </main>
+        <footer class="is-flex is-justify-content-center is-size-1 is-italic footer">
+            <div class="container has-text-centered">
+                <p class="title">One Stop Shop</p>
+                <p class="subtitle">For Everything Botanical</p>
+            </div>
+        </footer>
+    </div>
+    {{#if LoggedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
 
-{{#if LogedIn}}
-    <script src="/views/homepage.handlebars"></script>
-{{/if}}
 
-  <script src="/js/main.js"></script>
-  <script src="/js/login.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/login.js"></script>
 </body>
 
-
 </html>
+

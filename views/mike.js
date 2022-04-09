@@ -6,7 +6,7 @@ const hb = require("handlebars")
 
 
 
-router.get ("/test", (req, res) => {
+router.get ("/profile", (req, res) => {
     hb.registerPartial("button", "{{MyButton}}") 
 
     res.render ("Profile")
@@ -29,4 +29,4 @@ router.get('/chat', (req, res) => {
 
 
 
-module.exports = router
+ module.exports = router

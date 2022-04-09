@@ -32,8 +32,12 @@ router.get('/', (req, res) => {
       })
 })
 
-router.get('/test-photo-upload', (req, res) => {
-  return res.render('partials/photos')
+router.route('/test-new-plant-basic')
+  .get((req, res) => {
+  return res.render('partials/newPlantBasic', { loggedIn: req.session.loggedIn })
+}).post((req, res) => {
+    console.log(req.body)
+    res.json({message:'f* off'})
 })
 
 // single plant page

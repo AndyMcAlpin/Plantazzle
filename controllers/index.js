@@ -12,7 +12,19 @@ const {PlantBasic, PlantPicture, PlantGrowing, PlantCare, Comment, User} = requi
  */
 router.use((req, res, next) => {
   /**
+   *
+   * @param {Array<string>}attributes
+   * @param {QueryOptions} options
+   * @returns {Promise<PlantBasic[]>}
+   */
+  req.plantBasicGetAllAttributes = (attributes, options) => PlantBasic.findAll({
+    attributes,
+    ...!options ? {} : options
+  })
+
+  /**
    * PlantBasic.findAll located here
+   * @param {QueryOptions} options This is the options for Sequelize Queries
    * @returns {Promise<Array<PlantBasic>>}
    */
   req.plantBasicGetAll = options => PlantBasic.findAll({
@@ -59,7 +71,9 @@ router.use((req, res, next) => {
         }
       ]
     })
-  next()
+
+
+  return next()
 })
 
 router.use('/', homeRoutes);

@@ -11,6 +11,51 @@ const {PlantBasic, PlantPicture, PlantGrowing, PlantCare, Comment, User} = requi
  * change.
  */
 router.use((req, res, next) => {
+
+  req.myPlantGetAll = options => MyPlant.findAll({
+    ...!options ? {} : options,
+    where: {
+        UserId: req.session.user_id
+    },
+    attributes: [
+        'id',
+        'UserId',
+        'PlantBasicId'
+    ],
+    include: [
+        {
+            model: PlantBasic,
+            attributes: [
+                'id',
+                'botanicalName',
+                'commonName',
+                'family',
+                'origin',
+                'plantType',
+                'zone',
+                'growthRate',
+                'height',
+                'flowers',
+                'toxicity'
+            ],
+            include: [
+                {
+                    model: PlantPicture,
+                    attributes: ['id', 'filename', 'filePath']
+                },
+                {
+                    model: PlantGrowing,
+                    attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
+                },
+                {
+                    model: PlantCare,
+                    attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
+                }
+            ]
+        }
+    ]
+})
+
   /**
    * PlantBasic.findAll located here
    * @returns {Promise<Array<PlantBasic>>}

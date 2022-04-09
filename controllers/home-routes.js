@@ -70,7 +70,7 @@ router.get('/login', (req, res) => {
         return;
     }
     res.render('login')
-})
+});
 
 router.get('/', (req, res) => {
     req.plantBasicGetAll({ nested: true })
@@ -88,7 +88,7 @@ router.get('/', (req, res) => {
           console.error(err)
           res.status(500).json({ message: 'Internal Server Error', code: 500 })
       })
-})
+});
 
 // single plant page
 router.get('/:id', (req, res) => {

@@ -1,64 +1,6 @@
 const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
 
-// get all of PlantBasic info for homepage
-// router.get('/', (req, res) => {
-//     PlantBasic.findAll({
-//         attributes: [
-//             'id',
-//             'botanicalName',
-//             'commonName',
-//             'family',
-//             'origin',
-//             'plantType',
-//             'zone',
-//             'growthRate',
-//             'height',
-//             'flowers',
-//             'toxicity'
-//         ],
-//         include: [
-//             {
-//                 model: PlantPicture,
-//                 attributes: ['id', 'filename', 'filePath']
-//             },
-//             {
-//                 model: PlantGrowing,
-//                 attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
-//             },
-//             {
-//                 model: PlantCare,
-//                 attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
-//             },
-//             {
-//                 model: Comment,
-//                 attributes: [ 'id', 'title', 'commentText' ],
-//                 include: [{
-//                     model: User,
-//                     attributes: ['userName', 'zipCode']
-//                 },
-//                 // {
-//                 //     model: Vote,
-//                 //     attributes: [[fn('sum', col('upvote')), 'value']],
-//                 //     group: ['value']
-//                 // }
-//                 ]
-//             }
-//         ]
-//     })
-//         .then(dbPlantBasicData => {
-//             const plantData = dbPlantBasicData.map(plantBasic => plantBasic.get({ plain: true }));
-
-//             res.render('homepage', {
-//                 plantData
-//             });
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
-
 router.get('/sign-up', (req, res) => {
     res.render('sign_up');
 });
@@ -73,7 +15,7 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    req.plantBasicGetAll({ nested: true })
+    return req.plantBasicGetAll({ nested: true })
       .then(plantBasics => {
           const plantsJson = JSON.parse(JSON.stringify(plantBasics))
           const chunk = Math.ceil(plantsJson.length / 3)
@@ -90,8 +32,12 @@ router.get('/', (req, res) => {
       })
 })
 
+router.get('/test-photo-upload', (req, res) => {
+  return res.render('partials/photos')
+})
+
 // single plant page
-router.get('/:id', (req, res) => {
+router.get('/plant/:id', (req, res) => {
     PlantBasic.findOne({
         where: {
             id: req.params.id

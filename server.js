@@ -56,6 +56,9 @@ require('./controllers/ioEvents')(io)
 
 app.use(require('./controllers'));
 
+app.get('*', (req, res) => {
+    return res.send('OH FACE-PLANT! This page does not exist!!!')
+})
 // app.use("/",require("./views/mike"))
 // change name and location before finishing
 

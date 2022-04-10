@@ -217,14 +217,48 @@ function setupPage() {
   renderAndApplyToModal()
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  function loadImage(img) {
+    img.src = img.dataset.src
+    img.classList.remove('is-ll')
+    return img
+  }
 
+  let llImages = document.querySelectorAll('.is-ll')
 
-/*
+  if(typeof window.IntersectionObserver !== 'undefined') {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting)
+          imageObserver.unobserve(loadImage(entry.target))
+      })
+    })
 
-if(target.matches('[plant-id]'))
-      renderAndApplyToModal(target.getAttribute('plant-id'))
+    llImages.forEach(img => imageObserver.observe(img))
+  } else {
+    let llThrottle
+    function lazyLoad() {
+      if(llThrottle) clearTimeout(llThrottle)
 
-if(target.closest('[plant-id]')) // need to get the entire element instead of just hte sides of it.
+      llThrottle = setTimeout(() => {
+        scrollTop = window.scrollY
+        llImages.forEach(img => {
+          if(img.offsetTop < (window.innerHeight + scrollTop)) {
+            img.src = img.dataset.src
+            img.classList.remove('is-ll')
+          }
+        })
 
-      renderAndApplyToModal(target.closest('[plant-id]').getAttribute('plant.id'))
- */
+        if(llImages.length === 0) {
+          document.removeEventListener('scroll', lazyLoad)
+          window.removeEventListener('resize', lazyLoad)
+          window.removeEventListener('orientationChange', lazyLoad)
+        }
+      }, 20)
+    }
+
+    document.addEventListener('scroll', lazyLoad)
+    window.addEventListener('resize', lazyLoad)
+    window.addEventListener('orientationChange', lazyLoad)
+  }
+})

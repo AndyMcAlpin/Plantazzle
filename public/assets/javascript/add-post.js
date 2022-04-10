@@ -17,24 +17,35 @@ function newFormHandler(event) {
 
   (async () => {
     const DA = getDataAsst()
-    const [ botanicalName, commonName ] = await DA.getInputValue('#botanical-name', '#common-name')
-    const [ family, origin, plantType, growthRate, height, flowers, toxicity ] =
+    const [botanicalName, commonName] = await DA.getInputValue('#botanical-name', '#common-name')
+    const [family, origin, plantType, growthRate, height, flowers, toxicity] =
       DA.getEmptyOrValue('#family', '#origin', '#plant-type', '#growth-rate', '#height', '#flowers', '#toxicity')
+    const file = document.querySelector('#plant-picture').files[0]
+
+    const body = new FormData()
+    body.append('file', file, file.name)
+    body.append('botanicalName', botanicalName)
+    body.append('commonName', commonName)
+    body.append('family', family)
+    body.append('origin', origin)
+    body.append('plantType', plantType)
+    body.append('growthRate', growthRate)
+    body.append('height', height)
+    body.append('flowers', flowers)
+    body.append('toxicity', toxicity)
 
 
-    const json = await DA.post(`/api/plants`, {
-      botanicalName,
-      commonName,
-      family,
-      origin,
-      plantType,
-      growthRate,
-      height,
-      flowers,
-      toxicity
-    });
+    try {
+      const response = await fetch('/api/plants/upload_photo', {
+        method: 'post',
+        body
+      })
 
-    return uploadPlantPicture('#plant-picture', json.id)
+      const json = await response.json()
+      document.location = '/'
+    } catch (err) {
+      alert('You broke me bro!!')
+    }
   })()
 }
 
@@ -56,4 +67,6 @@ for(const [selector, value] of Object.entries({
   "#height": "qwe",
   "#flowers": "qwe",
   "#toxicity": "qwe"
-})) document.querySelector(selector).value = value
+})) {
+  document.querySelector(selector).value = value
+}

@@ -120,19 +120,38 @@ router.post('/', //withAuth,
 });
 
 router.post('/upload_photo', upload.single('file'), function (req, res, next) {
-  console.log(req.PlantBasicId)
-  console.log(req.file)
-  PlantPicture.create(
-        {
-        PlantBasicId: req.PlantBasicId,
-        file: req.file
-        }
-    )
-        .then(dbPlantBasicData => res.json(dbPlantBasicData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+  if(!req.session.loggedIn) return res.status(401).json({
+    message: 'Not Authorized',
+    code: 401
+  })
+
+  if(!req.body.botanicalName || !req.body.commonName || !req.file) return res.status(400).json({
+    message: 'Bad Request',
+    code: 400
+  })
+
+  PlantBasic.create(req.body, { nested:true })
+    .then(plantBasic => {
+        return PlantPicture.create({ PlantBasicId: plantBasic.id, file: req.file })
+    }).then(picture => {
+        return PlantBasic.findOne({ where: { id: picture.PlantBasicId }, include: {
+            model: PlantPicture
+            } })
+  }).then(res.json)
+    .catch(err => {
+      switch(err.errors[0].type) {
+        case 'unique violation':
+          error = err.errors[0]
+          return res.status(400).json({
+            message: 'Bad Request',
+            reason: error.message,
+            code: 400
+          })
+        default:
+          console.error(err)
+          return res.status(500).json({message: 'Internal Server Error', code: 500})
+      }
+    })
 });
 
 router.put('/:id', 

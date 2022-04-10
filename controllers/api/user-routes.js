@@ -106,7 +106,6 @@ router.post('/login', (req, res) => {
 
 
 
-// resolve hooks before writing
-// router.put('/:id')
+
 
 module.exports = router;

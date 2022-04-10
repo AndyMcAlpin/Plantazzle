@@ -122,8 +122,8 @@ router.post('/', //withAuth,
 router.post('/upload_photo', upload.single('avatar'), function (req, res, next) {
 PlantPicture.create(
         {
-        filename: req.fieldname,
-        filePath: req.file
+        filename: req.body.fieldname,
+        filePath: req.body.file
         }
     ) 
         .then(dbPlantBasicData => res.json(dbPlantBasicData))

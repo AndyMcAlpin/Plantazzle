@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="/css/chat.css" />
+{{#> modal/base id="chat" class="is-active" esc="false"}}
+    {{> modal/header title="Plantazzle Chat" class="has-background-primary" title-class="has-text-white"}}
+    {{#> modal/body}}
+        <section class="modal-card-body chat-window">
+
+        </section>
+    {{/modal/body}}
+    {{#> modal/footer}}
+        <form id="send-chat" class="chat-send">
+            <div class="field">
+                <div class="control columns is-variable is-justify-content-space-between">
+                    {{> form/input column="column is-10"}}
+                    <button class="button is-success" type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+    {{/modal/footer}}
+{{/modal/base}}
+<script src="/js/socket.io.js"></script>
+<script src="/js/chat.js"></script>

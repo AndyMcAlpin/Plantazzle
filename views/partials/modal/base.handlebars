@@ -1,0 +1,9 @@
+<div
+    class="modal{{#if class}} {{class}}{{/if}}" {{#if id}}id="{{id}}"{{/if}}
+    {{#if esc}}modal-esc="{{esc}}"{{/if}}
+>
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        {{> @partial-block}}
+    </div>
+</div>

@@ -147,10 +147,6 @@ function renderAndApplyToModal() {
   })
 }
 
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) )
-}
-
 function applyRandomBackgroundColor() {
   const tiles = document.querySelectorAll('[random-bulma-color]')
 
@@ -171,6 +167,7 @@ function closeModal($el) {
 
 function closeAllModals() {
   (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    if(!$modal.matches('[modal-esc="false"]'))
     closeModal($modal);
   });
 }
@@ -200,7 +197,7 @@ function applyModalScripts() {
   document.body.addEventListener('click', event => {
     const target = event.target
     // If open-modal attribute does not exist then stop.
-    if(!target.matches('[open-modal]')) return
+    if(!target.matches('[open-modal]') || target.matches('[modal-esc="false"]')) return
 
     const modal = document.querySelector(target.getAttribute('open-modal') || '.modal')
 

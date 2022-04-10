@@ -1,61 +1,641 @@
 [{
   "PlantBasicId": 1,
-  "filePath": "./seeds/data/images/image3.jpg"
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "618ec881-f510-4c9d-a186-9b1406267839",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
 }, {
   "PlantBasicId": 2,
-  "filePath": "./seeds/data/images/image2.jpg"
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "a820c8f8-6ac7-44e9-9ddf-c269e8c8abc0",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
 }, {
   "PlantBasicId": 3,
-  "filePath": "./seeds/data/images/image3.jpg"
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "017bff64-9312-4738-a6bf-bc2bc5cf0ebc",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
 }, {
   "PlantBasicId": 4,
-  "filePath": "./seeds/data/images/image1.jpg"
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "73cbe7f1-938d-41c1-913c-a1dcba43fb73",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
 }, {
   "PlantBasicId": 5,
-  "filePath": "./seeds/data/images/image5.jpg"
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "fcb3afca-5257-4323-9bdd-4240906b85d2",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
 }, {
   "PlantBasicId": 6,
-  "filePath": "./seeds/data/images/image1.jpg"
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "cf3142a3-c7a3-4a29-af8c-2b26059817f9",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
 }, {
   "PlantBasicId": 7,
-  "filePath": "./seeds/data/images/image3.jpg"
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "269fd2f8-42e2-4739-9cc0-999b845c7274",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
 }, {
   "PlantBasicId": 8,
-  "filePath": "./seeds/data/images/image5.jpg"
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "f36e7423-1025-4de4-a850-2eeab3f3cd41",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
 }, {
   "PlantBasicId": 9,
-  "filePath": "./seeds/data/images/image3.jpg"
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "21a6e56d-15eb-4b72-a0bc-5407ffa6ef75",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
 }, {
   "PlantBasicId": 10,
-  "filePath": "./seeds/data/images/image2.jpg"
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "0f135f4d-e731-41ec-a813-f9ea70f57181",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
 }, {
   "PlantBasicId": 11,
-  "filePath": "./seeds/data/images/image2.jpg"
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "cce4109c-0b76-41e5-abfc-7572d4f31686",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
 }, {
   "PlantBasicId": 12,
-  "filePath": "./seeds/data/images/image4.jpg"
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "ce83b7b4-ac58-435d-8a9a-0e3fd5546f7d",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
 }, {
   "PlantBasicId": 13,
-  "filePath": "./seeds/data/images/image1.jpg"
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "866fe0a4-1c49-47b9-b732-a99a934a0489",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
 }, {
   "PlantBasicId": 14,
-  "filePath": "./seeds/data/images/image5.jpg"
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "83435799-85ac-439a-91d3-27aacd8a4e13",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
 }, {
   "PlantBasicId": 15,
-  "filePath": "./seeds/data/images/image4.jpg"
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "c3d4a54e-8387-461f-b0e8-4cb7bf141d27",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
 }, {
   "PlantBasicId": 16,
-  "filePath": "./seeds/data/images/image4.jpg"
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "0311e735-a370-4000-9029-d4ca15167be9",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
 }, {
   "PlantBasicId": 17,
-  "filePath": "./seeds/data/images/image3.jpg"
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "019e2f7c-e7fa-4b64-89f7-728c5a8c86ce",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
 }, {
   "PlantBasicId": 18,
-  "filePath": "./seeds/data/images/image2.jpg"
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "37bf75dd-4ad1-419c-8fa7-7229cbb17a6a",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
 }, {
   "PlantBasicId": 19,
-  "filePath": "./seeds/data/images/image4.jpg"
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "ffb3a67c-ef88-4b47-b4a5-dd2a32d71b17",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
 }, {
   "PlantBasicId": 20,
-  "filePath": "./seeds/data/images/image1.jpg"
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "ff6c954c-5832-4926-bf73-5c920d178769",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 1,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "0c23f4fb-831f-42c8-b05d-23c747f4689c",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 2,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "5d7d2d62-f627-4bf2-858f-6ea3b59be8b6",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 3,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "6edd6844-98cb-4597-b4fe-bf627bdbf6d2",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 4,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "778c4da5-4558-4782-a1a6-7d7e01afd0af",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 5,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "0481c501-07da-4a45-b6e6-4e1880dca2a9",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 6,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "98946f1a-4375-4ecf-9821-0304e074a9cb",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 7,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "4575da58-21d1-4896-977c-615e3c9dfdb4",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 8,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "0cfa5e98-f3aa-4b54-92ca-be42f9d4ba88",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 9,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "57d1e840-2531-452f-a55f-e0a4caabbddb",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 10,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "dca98116-e78e-404e-8791-f6e97b73d956",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 11,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "b9c70acd-bb7d-4f76-ab53-4e49eeb87351",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 12,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "d86c382c-6668-4cc1-80d7-624790d78def",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 13,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "1f015f52-0a00-49e5-bbf7-7747d835c3be",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 14,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "ed5ea45c-3447-4fa5-8c74-996ce08303ea",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 15,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "18413b17-eb72-4559-942b-a7379cfffb97",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 16,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "03847ffa-b594-42f6-bb94-9f7882d81d5f",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 17,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "69b1acaa-5023-4274-922c-150e1f1ef801",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 18,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "b35312ed-273e-49db-b58d-187dac4da727",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 19,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "f8899ddb-9226-422d-af1f-b0447a4a5760",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 20,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "09a89b43-8a9d-4940-bc5a-a187f7f4c502",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 1,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "ccf19f87-9eb9-4fc4-b5fc-b25718e16b67",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 2,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "485bcb24-32a3-440a-8c2a-bd3618c7fea7",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 3,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "84ba1cf4-55d3-4583-8d44-3685a7311d98",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 4,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "8d4683c3-e1a6-41de-b705-ef40b2022e6a",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 5,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "1a1a041f-4b3e-4e61-abde-648c6c1f65b6",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 6,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "c3375bf1-4b99-45aa-8995-0e8468dc8ac0",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 7,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "cbb0075b-470f-4909-a578-24b10f48375b",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 8,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "baef17af-d70f-49dc-9027-3a73ab0898a8",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 9,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "1525958f-cdf6-494a-9c93-40c6a9a314d2",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 10,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "a23b3aff-81cb-4976-bedb-4e86472a2497",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 11,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "75966101-0cc1-4d6a-a7c7-f364205a4e3d",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 12,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "6ef08a9f-2889-4bb8-9758-66f32b54a6af",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 13,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "9f3ccaa8-c473-4cf0-a87e-5bf7a6e88982",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 14,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "9a7d13bd-b1c6-4cff-acc1-3d375b481bc4",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 15,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "6cd44c7e-3309-4d02-ad81-90be3322adca",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 16,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "635c0605-ae32-46ca-afd1-caecb9e4b286",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 17,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "b42007cc-2ff6-4f2c-8eea-c2c99e8be760",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 18,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "4fac142f-590b-450c-907e-5091c498f360",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 19,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "8c6d9066-25f8-463f-ae7e-d5e9192cc9fb",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 20,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "881a645a-624d-485d-9831-79a652a7b2ed",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 1,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "6a0452cd-8f18-49aa-81aa-2f973c7bf963",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 2,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "9a239908-423b-4ff2-95db-1eeea3b16a2b",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 3,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "f9cde382-9035-47fd-bc36-02f362f87f93",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 4,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "16f2f79a-5ab0-44c9-8a2d-c65ad2b84ef9",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 5,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "d1617146-dc3e-4f8f-bc3e-6de611e58b38",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 6,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "60c88524-972a-4b46-bd98-ae7f9624505a",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 7,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "94cefdb7-5f1d-4b86-94a4-4229c0c46b2f",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 8,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "28b7cd33-e6cd-4284-8fb2-eb57873c09e3",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 9,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "3dc43397-ef62-493d-a0d9-711724a032ce",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 10,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "8308f196-24b1-4524-a8a2-b6af556664b3",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 11,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "735476ff-c16d-40a5-9277-b5dda7ba9a31",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 12,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "f9e23aac-e8c1-4d72-9b73-32ed68fa9ac1",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 13,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "b2613b0a-0c73-47d6-880d-3cbed7d74f54",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 14,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "8b48e0c1-60db-47b9-bc0b-d5c1e75e08be",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 15,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "2d3f829e-6d3f-4d35-9e6a-80f41935a206",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
+}, {
+  "PlantBasicId": 16,
+  "file": {
+    "originalname": "image1.jpg",
+    "filename": "69d58f4c-2ba1-42fd-8fa4-b12e68943aa4",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image1.jpg"
+}, {
+  "PlantBasicId": 17,
+  "file": {
+    "originalname": "image2.jpg",
+    "filename": "fee9238a-7d92-493d-b16b-008a56cf923d",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image2.jpg"
+}, {
+  "PlantBasicId": 18,
+  "file": {
+    "originalname": "image3.jpg",
+    "filename": "00a8de7f-0366-4974-9626-1a5cacdb33aa",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image3.jpg"
+}, {
+  "PlantBasicId": 19,
+  "file": {
+    "originalname": "image4.jpg",
+    "filename": "ae65630e-d967-400a-a27b-18c3aeea67ec",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image4.jpg"
+}, {
+  "PlantBasicId": 20,
+  "file": {
+    "originalname": "image5.jpg",
+    "filename": "6a8c9604-494b-4f88-8de9-53a42ab27c95",
+    "destination": "./public/assets/images"
+  },
+  "path": "./seeds/data/images/image5.jpg"
 }]

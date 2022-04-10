@@ -1,26 +1,59 @@
-async function newFormHandler(event) {
-    event.preventDexzult();
-  
-    const title = document.querySelector('input[name="post-title"]').value;
-    const post_url = document.querySelector('input[name="post-url"]').value;
-  
-    const response = await fetch(`/api/posts`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-        post_url
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+async function uploadPlantPicture(selector, plantBasicId) {
+  const file = document.querySelector(selector).files[0]
+  const body = new FormData()
+  body.append('file', file, file.name)
+  body.append('PlantBasicId', plantBasicId)
+
+  return fetch('/api/plants/upload_photo', {
+    method: 'post',
+    body
+  }).then(resp => resp.json())
+    .then(console.log)
+    .catch(console.error)
+}
+
+function newFormHandler(event) {
+  event.preventDefault();
+
+  (async () => {
+    const DA = getDataAsst()
+    const [ botanicalName, commonName ] = await DA.getInputValue('#botanical-name', '#common-name')
+    const [ family, origin, plantType, growthRate, height, flowers, toxicity ] =
+      DA.getEmptyOrValue('#family', '#origin', '#plant-type', '#growth-rate', '#height', '#flowers', '#toxicity')
+
+
+    const json = await DA.post(`/api/plants`, {
+      botanicalName,
+      commonName,
+      family,
+      origin,
+      plantType,
+      growthRate,
+      height,
+      flowers,
+      toxicity
     });
-  
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert(response.statusText);
-    }
-  }
-  
-  document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
-  
+
+    return uploadPlantPicture('#plant-picture', json.id)
+  })()
+}
+
+function updateFileName(event) {
+  document.querySelector('[plant-file]').innerText = event.target.files[0].name
+}
+
+document.querySelector('#plant-picture').addEventListener('change', updateFileName)
+document.querySelector('#new-plant-basic').addEventListener('submit', newFormHandler);
+
+for(const [selector, value] of Object.entries({
+  "#botanical-name": "qwe",
+  "#common-name": "asd",
+  "#family": "zzxc",
+  "#origin": "qwe",
+  "#plant-type": "asd",
+  "#zone": "qwez",
+  "#growth-rate": "asd",
+  "#height": "qwe",
+  "#flowers": "qwe",
+  "#toxicity": "qwe"
+})) document.querySelector(selector).value = value

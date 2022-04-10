@@ -69,6 +69,12 @@ function fillOutPM(selector, data) {
 
 function getDataAsst() {
   return {
+    getEmptyOrValue(...selectors) {
+      const values = []
+      for(const selector of selectors) values.push(document.querySelector(selector).value.trim())
+
+      return values
+    },
     getInputValue(...selectors) {
       return new Promise((resolve, reject) => {
         const values = []

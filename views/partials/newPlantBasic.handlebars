@@ -65,7 +65,10 @@
             }}
         {{/form/field}}
         {{#> form/field}}
-            {{> form/file id="picture" name="plantPicture" accept="image/*" required=true}}
+            {{> form/file id="plant-picture" name="plantPicture" accept="image/*" required=true}}
+            <button class="button is-primary" type="submit">Submit</button>
         {{/form/field}}
     {{/form/setup}}
 {{/if}}
+
+<script src="/js/add-post.js"></script>

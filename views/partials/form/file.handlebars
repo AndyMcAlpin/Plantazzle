@@ -1,0 +1,20 @@
+<div class="file has-name">
+    <label class="file-label" for="{{id}}">
+        <input
+            class="file-input"
+            id="{{id}}"
+            type="file"
+            name="{{#if name}}{{name}}{{else}}{{id}}{{/if}}"
+            {{#if accept}}accept="{{accept}}"{{/if}}
+            {{#if required}}required="true"{{/if}}
+        >
+    <span class="file-cta">
+        <span class="file-label">
+            Choose a file…
+        </span>
+    </span>
+        <span class="file-name" plant-file>
+            … … …
+        </span>
+    </label>
+</div>

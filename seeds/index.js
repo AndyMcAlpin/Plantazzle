@@ -1,7 +1,19 @@
+const { join } = require('path')
+global.__rootdir = join(`${__dirname}/..`)
+
 const dropSchema = require('./dropSchema')
-const { rm, mkdir } = require('fs/promises')
+const { readFile, writeFile, rm, mkdir } = require('fs/promises')
 const { User, MyPlant, PlantBasic, PlantPicture, Comment, Vote, PlantGrowing, PlantCare } = require('../models')
-const { userData, myPlantData, plantBasicData, plantPictureData, commentData, voteData} = require('./data')
+const {
+  userData,
+  myPlantData,
+  plantBasicData,
+  plantPictureData,
+  commentData,
+  voteData,
+  plantCareData,
+  plantGrowingData
+} = require('./data')
 
 
 const seedPlantPicture = async () => {
@@ -12,6 +24,13 @@ const seedPlantPicture = async () => {
 
   // Creating the directory
   await mkdir(dirPath)
+
+  for(let image of plantPictureData) {
+    image.file.path = `${image.file.destination}/${image.file.filename}`
+    const tmpImage = await readFile(image.path)
+    await writeFile(image.file.path, tmpImage)
+    await PlantPicture.create(image, { logging: false })
+  }
 }
 
 const sync = async () => {
@@ -29,9 +48,10 @@ const sync = async () => {
 const seed = async () => {
   await User.bulkCreate(userData, { logging: false })
   await PlantBasic.bulkCreate(plantBasicData, { logging: false })
+  await PlantGrowing.bulkCreate(plantGrowingData, { logging: false })
+  await PlantCare.bulkCreate(plantCareData, { logging: false })
   await MyPlant.bulkCreate(myPlantData, { logging: false })
   await seedPlantPicture()
-  for(let image of plantPictureData) await PlantPicture.create(image, { logging: false })
   await Comment.bulkCreate(commentData, { logging: false })
   await Vote.bulkCreate(voteData, { logging: false })
 }

@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="tile is-ancestor">
+    <section class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          {{#each plant1 as | plant |}}
+            {{> plant/tile
+              id=plant.PlantBasic.id
+              title=plant.PlantBasic.botanicalName
+              subtitle=plant.PlantBasic.commonName
+              plantFileName=plant.PlantBasic.PlantPictures.0.filename }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    <section class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          {{#each plant2 as | plant |}}
+            {{> plant/tile
+              id=plant.PlantBasic.id
+              title=plant.PlantBasic.botanicalName
+              subtitle=plant.PlantBasic.commonName
+              plantFileName=plant.PlantBasic.PlantPictures.0.filename }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    <section class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          {{#each plant3 as | plant |}}
+            {{> plant/tile
+              id=plant.PlantBasic.id
+              title=plant.PlantBasic.botanicalName
+              subtitle=plant.PlantBasic.commonName
+              plantFileName=plant.PlantBasic.PlantPictures.0.filename }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{{> plant/readPlantBasics }}
+{{> modals/chat}}

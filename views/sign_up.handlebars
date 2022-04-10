@@ -1,23 +1,107 @@
 <div class="container">
-    <h1>Please input your information below!</h1>
+    <div class="columns is-justify-content-center is-align-items-center">
+        <div class="column is-6-desktop is-10-tablet is-12-mobile is-justify-content-center is-flex is-flex-direction-column ml-4 p-0 card">
+            <div class="column card-header has-background-primary has-shadow mb-4">
+                <h1 class="has-text-centered is-size-3 has-text-white">Please input your information below!</h1>
+            </div>
+            <div class="column is-12 columns is-justify-content-center">
+                <form id="sign-up">
+                    <div class="column">
+                        {{> form/input
+                            column="is-12"
+                            id="first-name"
+                            type="text"
+                            label="First Name"
+                            placeholder="Example: John"
+                            colorClass="is-primary"
+                            isRequired=true
+                        }}
+                        {{> form/input
+                            column="is-12"
+                            id="last-name"
+                            type="text"
+                            label="Last Name"
+                            placeholder="Example: Smith"
+                            colorClass="is-primary"
+                            isRequired=true
+                        }}
+                        {{> form/input
+                                column="is-12"
+                                id="email"
+                                type="email"
+                                label="Email"
+                                placeholder="Example: exam@example.com"
+                                colorClass="is-primary"
+                                isRequired=true
+                        }}
+                        {{> form/input
+                                column="is-12"
+                                id="zip-code"
+                                type="zipCode"
+                                label="Zip Code"
+                                placeholder="Example: 78664"
+                                colorClass="is-primary"
+                                isRequired=true
+                        }}
+                        {{> form/input
+                                column="is-12"
+                                id="username"
+                                type="text"
+                                label="Username"
+                                placeholder="Example: examman101"
+                                colorClass="is-primary"
+                                isRequired=true
+                        }}
+                        {{> form/input
+                                column="is-12"
+                                id="password1"
+                                type="password"
+                                label="Password"
+                                placeholder="********"
+                                colorClass="is-primary"
+                                isRequired=true
+                        }}
+                        {{> form/input
+                                column="is-12"
+                                id="password2"
+                                type="password"
+                                label="Repeat Password"
+                                placeholder="********"
+                                colorClass="is-primary"
+                                isRequired=true
+                        }}
+                    </div>
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+                    <div class="is-flex is-justify-content-center p-3 is-flex-direction-column">
+                        <div class="column is-12">
+                            <p>By creating an account you agree to our <a href="#">Terms and Privacy</a>.</p>
+                        </div>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <label>
-        <input type="checkbox" checked="checked" name="remember">
-    </label>
-
-    <p>By creating an account you agree to our <a href="#">Terms and Privacy</a>.</p>
-
-    <div class="clearfix">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <button type="submit" class="signupbtn">Sign Up</button>
+                        <div class="column is-12 p-1">
+                            <div class="is-flex is-justify-content-space-between">
+                                <button type="button" class="button is-danger">Cancel</button>
+                                <button type="submit" class="button is-primary" >Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
+
+{{!--
+Terms and Conditions
+Agreement between User and plantazzle.com, Welcome to plantazzle.com,. The plantazzle.com, website (the "Site") is comprised of various web pages operated by Plantazzle ("Plantazzle"). plantazzle.com, is offered to you conditioned on your acceptance without modification of the terms, conditions, and notices contained herein (the "Terms"). Your use of plantazzle.com, constitutes your agreement to all such Terms. Please read these terms carefully, and keep a copy of them for your reference.
+plantazzle.com, is a Social Networking Site.
+To provide social guidance for the care and maintenance of plants!
+Electronic Communications Visiting plantazzle.com, or sending emails to Plantazzle constitutes electronic communications. You consent to receive electronic communications and you agree that all agreements, notices, disclosures and other communications that we provide to you electronically, via email and on the Site, satisfy any legal requirement that such communications be in writing.
+Your Account If you use this site, you are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer, and you agree to accept responsibility for all activities that occur under your account or password. You may not assign or otherwise transfer your account to any other person or entity. You acknowledge that Plantazzle is not responsible for third party access to your account that results from theft or misappropriation of your account. Plantazzle and its associates reserve the right to refuse or cancel service, terminate accounts, or remove or edit content in our sole discretion.
+Children Under Thirteen Plantazzle does not knowingly collect, either online or offline, personal information from persons under the age of thirteen. If you are under 18, you may use plantazzle.com, only with permission of a parent or guardian.
+Links to Third Party Sites/Third Party Services plantazzle.com, may contain links to other websites ("Linked Sites"). The Linked Sites are not under the control of Plantazzle and Plantazzle is not responsible for the contents of any Linked Site, including without limitation any link contained in a Linked Site, or any changes or updates to a Linked Site. Plantazzle is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement by Plantazzle of the site or any association with its operators.
+Certa in services made available via plantazzle.com, are delivered by third party sites and organizations. By using any product, service or functionality originating from the plantazzle.com, domain, you hereby acknowledge and consent that Plantazzle may share such information and data with any third party with whom Plantazzle has a contractual relationship to provide the requested
+This is a RocketLawyer.com document.
+
+--}}
+

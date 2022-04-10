@@ -1,0 +1,14 @@
+<div class="column {{column}}">
+    <div class="field">
+        <div class="control">
+            <label for="{{id}}"><b>{{label}}</b></label>
+            <input
+                class="input {{#if colorClass}}{{colorClass}}{{else}}is-primary{{/if}}"
+                type="{{#if type}}{{type}}{{else}}text{{/if}}"
+                id="{{id}}"
+                placeholder="{{#if placeholder}}{{placeholder}}{{else}}{{label}}{{/if}}"
+                name="{{#if name}}{{name}}{{else}}{{id}}{{/if}}"
+                {{#if isRequired}}required{{/if}}>
+        </div>
+    </div>
+</div>

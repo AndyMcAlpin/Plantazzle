@@ -6,10 +6,27 @@ const hb = require("handlebars")
 
 
 
-router.get ("/test", (req, res) => {
+router.get ("/profile", (req, res) => {
     hb.registerPartial("button", "{{MyButton}}") 
-    res.render ("profile")
-}) 
+
+    res.render ("Profile")
+})
+
+router.get('/online/', (req,res) => {
+
+    res.render('')
+})
 
 
-module.exports = router
+router.get('/sign-up', (req, res) => {
+    res.render('sign_up')
+})
+
+router.get('/chat', (req, res) => {
+   res.render('chat')
+})
+
+
+
+
+ module.exports = router

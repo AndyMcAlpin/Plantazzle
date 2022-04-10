@@ -1,41 +1,108 @@
-<!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Plantazzle! </title>
-        <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Plantazzle! </title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+  </head>
 
-    <body>
-        <div class="wrapper">
-            <header>
-                <h1>
-                    <p>One Stop Shop For Everything Botanical!</p>
-                </h1>
-                <nav>
-                    {{#if loggedin}}
-                    <a href="/views/homepage.handlebars">Homepage</a>
-                    <button id="logout" class="btn-no-style">logout</button>
-                    {{else}}
-                    <a href="/views/login.handlebars">login</a>
-                    {{/if}}
-                </nav>
-            </header>
-            <main>
-                {{{body}}}
-            </main>
-            <footer>
-                Thanks for visiting
-            </footer>
+  <body>
+    <div class="wrapper is-full">
+      <nav class="navbar has-background-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item is-size-1" href="/">Plantazzle</a>
+
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasic"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
 
-        {{#if LogedIn}}
-        <script src="/views/homepage.handlebars"></script>
-        {{/if}}
-    </body>
+        <div id="navbarBasic" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">
+              <strong>Home</strong>
+            </a>
 
-    
+            <a class="navbar-item">
+              <strong>Search</strong>
+            </a>
+            {{#if loggedIn}}
+              <a class="navbar-item" href="/dashboard/"><strong>Dashboard</strong></a>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  <strong>More</strong>
+                </a>
+
+                <div class="navbar-dropdown">
+                  <a class="navbar-item">
+                    Chat
+                  </a>
+                  <a class="navbar-item">
+                    Add a plant
+                  </a>
+                  <a class="navbar-item">
+                    Add my plant
+                  </a>
+                  <hr class="navbar-divider" />
+                  <a class="navbar-item">
+                    About
+                  </a>
+                </div>
+              </div>
+            {{/if}}
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                {{#if loggedIn}}
+                  <a id="logout" class="button is-success">logout</a>
+                {{else}}
+                <!-- {{loggedIn}} -->
+                  <a class="button is-primary" href="/sign-up">
+                    <strong>Sign up</strong>
+                  </a>
+                  <a class="button is-light" href="/login">
+                    Log in
+                  </a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main class="is-flex is-justify-content-center my-5">
+        {{{body}}}
+      </main>
+      <footer
+        class="is-flex is-justify-content-center is-size-1 is-italic footer"
+      >
+        <div class="container has-text-centered">
+          <p class="title">One Stop Shop</p>
+          <p class="subtitle">For Everything Botanical</p>
+        </div>
+      </footer>
+    </div>
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
+    <script src="/js/main.js"></script>
+    <script src="/js/login.js"></script>
+  </body>
+
 </html>

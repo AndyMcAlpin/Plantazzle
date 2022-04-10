@@ -1,33 +1,38 @@
-<form class="login-form">
-  <div>
-    <label for="email-login">email:</label>
-    <input type="text" id="email-login" />
-  </div>
-  <div>
-    <label for="password-login">password:</label>
-    <input type="password" id="password-login" />
-  </div>
-  <div>
-    <button type="submit">login</button>
-  </div>
-</form>
-
-<form class="signup-form">
-  <div>
-    <label for="username-signup">username:</label>
-    <input type="text" id="username-signup" />
-  </div>
-  <div>
-    <label for="email-signup">email:</label>
-    <input type="text" id="email-signup" />
-  </div>
-  <div>
-    <label for="password-signup">password:</label>
-    <input type="password" id="password-signup" />
-  </div>
-  <div>
-    <button type="submit">signup</button>
-  </div>
-</form>
-
-<script src="/javascript/login.js"></script>
+<div class="container">
+    <div class="columns is-justify-content-center is-align-items-center">
+        <div class="column is-6-desktop is-10-tablet is-12-mobile is-justify-content-center is-flex is-flex-direction-column ml-4 p-0 card">
+            <div class="column card-header has-background-primary has-shadow mb-4">
+                <h1 class="has-text-centered is-size-3 has-text-white">Please input your information below!</h1>
+            </div>
+            <div class="column is-12 columns is-justify-content-center">
+                <form id="login-form">
+                    <div class="column">
+                        {{> form/input
+                            column="is-12"
+                            id="username-login"
+                            type="text"
+                            label="Username"
+                            placeholder="Example: Username"
+                            colorClass="is-primary"
+                            isRequired=true
+                        }}
+                        {{> form/input
+                            column="is-12"
+                            id="password-login"
+                            type="text"
+                            label="Password"
+                            placeholder="Example: Password"
+                            colorClass="is-primary"
+                            isRequired=true
+                        }}
+                    </div>
+                    <div class="is-flex is-justify-content-center p-3 is-flex-direction-column">
+                        <div class="column is-12 p-1">
+                            <div class="is-flex is-justify-content-space-between">
+                                <button type="submit" class="button is-primary">Log in</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+{{!-- <script src="/javascript/login.js"></script> --}}

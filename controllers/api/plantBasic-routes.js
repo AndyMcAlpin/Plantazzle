@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const multer = require('multer');
+const upload = multer({ dest: './public/assets/images' });
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
@@ -6,49 +8,7 @@ const modAuth = require('../../utils/modAuth');
 const { fn, col } = require('sequelize');
 
 router.get('/', (req, res) => {
-    PlantBasic.findAll({
-        attributes: [
-            'id',
-            'botanicalName',
-            'commonName',
-            'family',
-            'origin',
-            'plantType',
-            'zone',
-            'growthRate',
-            'height',
-            'flowers',
-            'toxicity'
-        ],
-        include: [
-            {
-                model: PlantPicture,
-                attributes: ['id', 'filename', 'filePath']
-            },
-            {
-                model: PlantGrowing,
-                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
-            },
-            {
-                model: PlantCare,
-                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
-            },
-            {
-                model: Comment,
-                attributes: [ 'id', 'title', 'commentText' ],
-                include: [{
-                    model: User,
-                    attributes: ['userName', 'zipCode']
-                },
-                // {
-                //     model: Vote,
-                //     attributes: [[fn('sum', col('upvote')), 'value']],
-                //     group: ['value']
-                // }
-                ]
-            }
-        ]
-    })
+    req.plantBasicGetAll()
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
         .catch(err => {
             console.log(err);
@@ -157,6 +117,38 @@ router.post('/', //withAuth,
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+router.post('/upload_photo', upload.single('file'), async function (req, res, next) {
+  if(!req.session.loggedIn) return res.status(401).json({
+    message: 'Not Authorized',
+    code: 401
+  })
+
+  if(!req.body.botanicalName || !req.body.commonName || !req.file) return res.status(400).json({
+    message: 'Bad Request',
+    code: 400
+  })
+  try {
+    const plantBasic = await PlantBasic.create(req.body)
+    await PlantPicture.create({ PlantBasicId: plantBasic.id, file: req.file })
+
+    return res.json({ message: 'ok', code: 200 })
+  } catch(err) {
+    console.error(err)
+    switch(err.errors[0].type) {
+      case 'unique violation':
+        error = err.errors[0]
+        return res.status(400).json({
+          message: 'Bad Request',
+          reason: error.message,
+          code: 400
+        })
+      default:
+        console.error(err)
+        return res.status(500).json({message: 'Internal Server Error', code: 500})
+    }
+  }
 });
 
 router.put('/:id', 

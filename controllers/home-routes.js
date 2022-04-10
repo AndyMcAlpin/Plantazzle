@@ -1,67 +1,47 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
 
-// get all of PlantBasic info for homepage
-router.get('/', (req, res) => {
-    PlantBasic.findAll({
-        attributes: [
-            'id',
-            'botanicalName',
-            'commonName',
-            'family',
-            'origin',
-            'plantType',
-            'zone',
-            'growthRate',
-            'height',
-            'flowers',
-            'toxicity'
-        ],
-        include: [
-            {
-                model: PlantPicture,
-                attributes: ['id', 'filename', 'filePath']
-            },
-            {
-                model: PlantGrowing,
-                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
-            },
-            {
-                model: PlantCare,
-                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
-            },
-            {
-                model: Comment,
-                attributes: [ 'id', 'title', 'commentText' ],
-                include: [{
-                    model: User,
-                    attributes: ['userName', 'zipCode']
-                },
-                // {
-                //     model: Vote,
-                //     attributes: [[fn('sum', col('upvote')), 'value']],
-                //     group: ['value']
-                // }
-                ]
-            }
-        ]
-    })
-        .then(dbPlantBasicData => {
-            const plantData = dbPlantBasicData.map(plantBasic => plantBasic.get({ plain: true }));
-
-            res.render('homepage', {
-                plantData
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+router.get('/sign-up', (req, res) => {
+    res.render('sign_up');
 });
 
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        
+        res.redirect('/');
+        return;
+    }
+    res.render('login')
+});
+
+router.get('/', (req, res) => {
+    return req.plantBasicGetAll({ nested: true })
+      .then(plantBasics => {
+          const plantsJson = JSON.parse(JSON.stringify(plantBasics))
+          const chunk = Math.ceil(plantsJson.length / 3)
+          const plants = {
+              plant1: plantsJson.splice(0, chunk),
+              plant2: plantsJson.splice(0, chunk),
+              plant3: plantsJson.splice(0, chunk)
+          }
+          return res.render('homepage', { ...plants, loggedIn: req.session.loggedIn })
+      })
+      .catch(err => {
+          console.error(err)
+          res.status(500).json({ message: 'Internal Server Error', code: 500 })
+      })
+});
+
+router.route('/test-new-plant-basic')
+  .get((req, res) => {
+  return res.render('partials/newPlantBasic', { loggedIn: req.session.loggedIn })
+}).post((req, res) => {
+    console.log(req.body)
+    res.json({message:'f* off'})
+})
+
 // single plant page
-router.get('/:id', (req, res) => {
+router.get('/plant/:id', (req, res) => {
     PlantBasic.findOne({
         where: {
             id: req.params.id
@@ -123,16 +103,6 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-});
-
-// login page
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        // change to dashboard?
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
 });
 
 module.exports = router;

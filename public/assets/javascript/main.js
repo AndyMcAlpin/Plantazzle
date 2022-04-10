@@ -262,3 +262,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('orientationChange', lazyLoad)
   }
 })
+
+document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
+
+function toggleNavbar() {
+const burger = document.querySelector('.navbar-burger')
+const basic = document.querySelector('#navbarBasic')
+
+if (burger.classList.contains('is-active') == true) {
+  burger.classList.remove('is-active')
+  basic.classList.remove('is-active')
+} else {
+  burger.classList.add('is-active')
+  basic.classList.add('is-active')
+}
+
+};

@@ -119,7 +119,7 @@ router.post('/', //withAuth,
         });
 });
 
-router.post('/upload_photo', upload.single('file'), function (req, res, next) {
+router.post('/upload_photo', upload.single('file'), async function (req, res, next) {
   if(!req.session.loggedIn) return res.status(401).json({
     message: 'Not Authorized',
     code: 401
@@ -129,29 +129,26 @@ router.post('/upload_photo', upload.single('file'), function (req, res, next) {
     message: 'Bad Request',
     code: 400
   })
+  try {
+    const plantBasic = await PlantBasic.create(req.body)
+    await PlantPicture.create({ PlantBasicId: plantBasic.id, file: req.file })
 
-  PlantBasic.create(req.body, { nested:true })
-    .then(plantBasic => {
-        return PlantPicture.create({ PlantBasicId: plantBasic.id, file: req.file })
-    }).then(picture => {
-        return PlantBasic.findOne({ where: { id: picture.PlantBasicId }, include: {
-            model: PlantPicture
-            } })
-  }).then(res.json)
-    .catch(err => {
-      switch(err.errors[0].type) {
-        case 'unique violation':
-          error = err.errors[0]
-          return res.status(400).json({
-            message: 'Bad Request',
-            reason: error.message,
-            code: 400
-          })
-        default:
-          console.error(err)
-          return res.status(500).json({message: 'Internal Server Error', code: 500})
-      }
-    })
+    return res.json({ message: 'ok', code: 200 })
+  } catch(err) {
+    console.error(err)
+    switch(err.errors[0].type) {
+      case 'unique violation':
+        error = err.errors[0]
+        return res.status(400).json({
+          message: 'Bad Request',
+          reason: error.message,
+          code: 400
+        })
+      default:
+        console.error(err)
+        return res.status(500).json({message: 'Internal Server Error', code: 500})
+    }
+  }
 });
 
 router.put('/:id', 

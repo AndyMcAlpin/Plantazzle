@@ -1,17 +1,3 @@
-async function uploadPlantPicture(selector, plantBasicId) {
-  const file = document.querySelector(selector).files[0]
-  const body = new FormData()
-  body.append('file', file, file.name)
-  body.append('PlantBasicId', plantBasicId)
-
-  return fetch('/api/plants/upload_photo', {
-    method: 'post',
-    body
-  }).then(resp => resp.json())
-    .then(console.log)
-    .catch(console.error)
-}
-
 function newFormHandler(event) {
   event.preventDefault();
 
@@ -41,8 +27,21 @@ function newFormHandler(event) {
         body
       })
 
+      if(response.ok) return document.location = '/'
       const json = await response.json()
-      document.location = '/'
+      switch(json.code) {
+        case 400:
+          const botanicalName = document.querySelector('#botanical-name')
+          botanicalName.classList.add('is-danger')
+          botanicalName.classList.remove('is-primary')
+          if(!botanicalName.closest('.control').querySelector('.has-text-danger'))
+          botanicalName.closest('.control').insertAdjacentHTML('beforeend',
+              `<span class="has-text-danger">Botanical Name already exists</span>`)
+          break
+        default:
+
+          break
+      }
     } catch (err) {
       alert('You broke me bro!!')
     }

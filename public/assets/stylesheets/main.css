@@ -3,7 +3,7 @@ a.panel-block:hover {
     color: white!important;
 }
 
-#chat {
+#usermenu {
     position: fixed;
     bottom: 1em;
     right: 1em;

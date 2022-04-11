@@ -1,3 +1,4 @@
+// Columns for the models
 const { DataTypes } = require('sequelize')
 const { INTEGER, STRING, TEXT, VIRTUAL, BOOLEAN } = DataTypes
 

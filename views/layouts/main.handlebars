@@ -36,7 +36,7 @@
               <strong>Home</strong>
             </a>
 
-            <a class="navbar-item" id="openSearch">
+            <a id='searchwin' class="navbar-item">
               <strong>Search</strong>
             </a>
             {{#if loggedIn}}
@@ -48,13 +48,13 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                  <a class="navbar-item" id="openChat">
+                  <a id="chatwin" class="navbar-item">
                     Chat
                   </a>
-                  <a class="navbar-item" id="openAddPlant" onclick="() => openModal(document.querySelector('#new-plant'))">
+                  <a id="addPlant" class="navbar-item">
                     Add a plant
                   </a>
-                  <a class="navbar-item" id="openAddMyPlant">
+                  <a id="addMyPlant" class="navbar-item">
                     Add my plant
                   </a>
                   <hr class="navbar-divider" />
@@ -101,7 +101,9 @@
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
       {{> modals/newPlant}}
+      {{> modals/chat}}
     {{/if}}
+      {{> modals/search}}
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
   </body>

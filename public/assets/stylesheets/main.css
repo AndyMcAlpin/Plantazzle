@@ -2,21 +2,3 @@ a.panel-block:hover {
     background-color: rgba(0, 209, 178, .37)!important;
     color: white!important;
 }
-
-#usermenu {
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
-}
-
-@media screen and (max-width: 768px) {
-    header {
-        size: auto;
-    }
-}
-
-@media screen and (min-width: 769px) {
-    header {
-        size: auto;
-    }
-}

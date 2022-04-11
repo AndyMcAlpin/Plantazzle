@@ -1,4 +1,6 @@
+// A utility function to only aloow moderators to delete plants, not currently used
 const modAuth = (req, res, next) => {
+    // add moderator's usernames to array to give delete access
     modArr = ['modUsernameHere']
 
     result = modArr.filter(checkMod);

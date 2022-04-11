@@ -216,6 +216,10 @@ function setupPage() {
   document.querySelectorAll('.tabs li').forEach(tab => {
     tab.addEventListener('click', clickTab)
   })
+  document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
+  document.querySelector("#chatwin").addEventListener("click",() => openModal(document.querySelector("#chat")));
+  document.querySelector("#addPlant").addEventListener("click",() => openModal(document.querySelector("#new-plant-basic")));
+  document.querySelector("#searchwin").addEventListener("click",() => openModal(document.querySelector("#search-modal")));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -264,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
 
 function deactivateTabAndContainer(tab) {
   const container = document.querySelector(tab.getAttribute('tab-selector'))

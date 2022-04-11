@@ -1,10 +1,12 @@
 const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
 
+// route to sign-up page
 router.get('/sign-up', (req, res) => {
     res.render('sign_up');
 });
 
+// route to login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         
@@ -14,6 +16,7 @@ router.get('/login', (req, res) => {
     res.render('login')
 });
 
+// Gets all plants for homepage
 router.get('/', (req, res) => {
     return req.plantBasicGetAll({ nested: true })
       .then(plantBasics => {
@@ -32,6 +35,7 @@ router.get('/', (req, res) => {
       })
 });
 
+// Route to create a new plant
 router.route('/test-new-plant-basic')
   .get((req, res) => {
   return res.render('partials/newPlantBasic', { loggedIn: req.session.loggedIn })

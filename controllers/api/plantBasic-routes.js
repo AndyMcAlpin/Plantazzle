@@ -7,6 +7,7 @@ const withAuth = require('../../utils/auth');
 const modAuth = require('../../utils/modAuth');
 const { fn, col } = require('sequelize');
 
+// Get all plant's and their data from server
 router.get('/', (req, res) => {
     req.plantBasicGetAll()
         .then(dbPlantBasicData => res.json(dbPlantBasicData))
@@ -14,6 +15,61 @@ router.get('/', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+// Get's a selected plant's data
+router.get('/search', (req, res) => {
+    PlantBasic.findOne({
+        where: {
+            botanicalName: req.body.botanicalName
+        },
+        attributes: [
+            'id',
+            'botanicalName',
+            'commonName',
+            'family',
+            'origin',
+            'plantType',
+            'zone',
+            'growthRate',
+            'height',
+            'flowers',
+            'toxicity'
+        ],
+        include: [
+            {
+                model: PlantPicture,
+                attributes: ['id', 'filename', 'filePath']
+            },
+            {
+                model: PlantGrowing,
+                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
+            },
+            {
+                model: PlantCare,
+                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
+            },
+            // {
+            //     model: Comment,
+            //     attributes: [ 'id', 'title', 'commentText' ],
+            //     include: [{
+            //         model: User,
+            //         attributes: ['userName', 'zipCode']
+            //     }]
+            // }
+        ]
+    })
+    .then(dbPlantBasicData => {
+        if (!dbPlantBasicData) {
+            res.status(404).json({ message: 'No plant with this name, please try a different search!' });
+            return;
+        }
+        res.json(dbPlantBasicData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 router.get('/:id', (req, res) => {
@@ -76,8 +132,8 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', //withAuth,
-(req, res) => {
+// Add a new plant to the database
+router.post('/', withAuth, (req, res) => {
     PlantBasic.create({
         botanicalName: req.body.botanicalName,
         commonName: req.body.commonName,
@@ -119,6 +175,7 @@ router.post('/', //withAuth,
         });
 });
 
+// upload a photo for a plant
 router.post('/upload_photo', upload.single('file'), async function (req, res, next) {
   if(!req.session.loggedIn) return res.status(401).json({
     message: 'Not Authorized',
@@ -151,9 +208,8 @@ router.post('/upload_photo', upload.single('file'), async function (req, res, ne
   }
 });
 
-router.put('/:id', 
-// withAuth, 
-(req, res) => {
+// update a plants data, not currently used
+router.put('/:id', withAuth, (req, res) => {
     PlantBasic.update(
         {
             botanicalName: req.body.botanicalName,
@@ -167,7 +223,7 @@ router.put('/:id',
             flowers: req.body.flowers,
             toxicity: req.body.toxicity
         },
-        // maybe add sub tables
+        // add sub tables
         {
             where: {
                 id: req.params.id
@@ -187,9 +243,8 @@ router.put('/:id',
         });
 });
 
-router.delete('/:id', 
-// modAuth,
- (req, res) => {
+// Remove a plant from the database, moderator only, not currently used
+router.delete('/:id', modAuth, (req, res) => {
     this.PlantBasic.destroy({
         where: {
             id: req.params.id

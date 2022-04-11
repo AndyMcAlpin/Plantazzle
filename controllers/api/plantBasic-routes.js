@@ -192,19 +192,22 @@ router.post('/upload_photo', upload.single('file'), async function (req, res, ne
 
     return res.json({ message: 'ok', code: 200 })
   } catch(err) {
-    if(typeof err.errors === 'undefined') return console.error(err)
-
-    switch(err.errors[0].type) {
-      case 'unique violation':
-        error = err.errors[0]
-        return res.status(400).json({
-          message: 'Bad Request',
-          reason: error.message,
-          code: 400
-        })
-      default:
-        console.error(err)
-        return res.status(500).json({message: 'Internal Server Error', code: 500})
+    if(typeof err.errors === 'undefined') {
+      console.error(err)
+      res.status(500).json({message: 'Internal Server Error', code: 500})
+    } else {
+      switch(err.errors[0].type) {
+        case 'unique violation':
+          error = err.errors[0]
+          return res.status(400).json({
+            message: 'Bad Request',
+            reason: error.message,
+            code: 400
+          })
+        default:
+          console.error(err)
+          return res.status(500).json({message: 'Internal Server Error', code: 500})
+      }
     }
   }
 });

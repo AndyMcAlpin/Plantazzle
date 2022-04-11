@@ -192,7 +192,8 @@ router.post('/upload_photo', upload.single('file'), async function (req, res, ne
 
     return res.json({ message: 'ok', code: 200 })
   } catch(err) {
-    console.error(err)
+    if(typeof err.errors === 'undefined') return console.error(err)
+
     switch(err.errors[0].type) {
       case 'unique violation':
         error = err.errors[0]

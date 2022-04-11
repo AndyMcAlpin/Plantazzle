@@ -11,7 +11,7 @@
 
 - We wanted to build a resource for gardeners and houseplant enthusiasts to find and share information about their    plants.
   Currently this information is spread across many sites and is not always consistent so we wanted to bring it together into one place that is 
-  user generated. It will also be a social hub for everyone interested by having chat to discuss problems and successes.
+  user generated. It will also be a social hub for everyone interested, by having chat to discuss problems and successes.
   We gained a bunch of knowledge about project scope and planning to use in future endeavours.
 
 ## Table of Contents
@@ -71,6 +71,35 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
     ![alt text](assets/images/screenshot.png)
     ```
 
+## Usage/Examples
+You use the demo [here](https://salty-dawn-76084.herokuapp.com).
+
+### Start
+```bash
+node server
+```
+
+### Sign Up
+You can sign up by providing very basic information.
+![](./assets/images/signup.png)
+
+### Login
+When coming to site if you are already signed up you can log in by using your username and password.
+![](./assets/images/login.png)
+
+### Plants
+You can view all of the different kinds of plants
+![](./assets/images/plants.png)
+![](./assets/images/plant-data.png)
+
+### Add Plants
+You can add different kinds of plants
+![](./assets/images/add-plant.png)
+
+### Chat
+You can jump into our public chat and see what is going one
+![](./assets/images/chat.png)
+
 ## Credits
 
 - Andy McAlpin https://github.com/AndyMcAlpin
@@ -78,6 +107,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 - William Jardell https://github.com/PeauxBoi
 
 ## License
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=plastic "MIT License" )](./LICENSE)
 
 MIT License
 

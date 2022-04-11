@@ -4,13 +4,14 @@
   <div class="modal-content">
     <div class="modal-card">
       <header class="modal-card-head is-flex-wrap-wrap is-flex-direction-column">
+          <button class="button delete is-primary mb-1"></button>
         <h3 class="is-size-3 has-text-centered modal-card-title" plant-modal="botanicalName">Amaranthus macrocarpus Benth.
           <legend class="is-size-4 has-text-center" plant-modal="commonName">
             Dwarf Amaranth
           </legend>
         </h3>
       </header>
-      <section class="modal-card-body columns is-justify-content-center is-flex-wrap-wrap section">
+      <section class="modal-card-body is-justify-content-center is-flex-wrap-wrap">
           {{> plant/basicData
             color="is-primary"
             title="Plant Basics"
@@ -30,9 +31,7 @@
             columns='[{"id":"leafCare","name":"Leaf Care"},{"id":"repotting","name":"Repotting"},{"id":"pruningShaping","name":"Pruning Shaping"}]'
           }}
       </section>
-      <footer class="modal-card-foot is-grouped is-pulled-right">
-        <button class="button is-primary">Save changes</button>
-        <button class="button">Cancel</button>
+      <footer class="modal-card-foot">
       </footer>
     </div>
   </div>

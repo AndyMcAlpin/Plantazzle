@@ -1,5 +1,12 @@
-# <Plantazzle>
-
+# Plantazzle
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=plastic "MIT License" )](./LICENSE)
+[![Node v16.14 ](https://img.shields.io/badge/Node%20v16.14-339933?labelColor=ffffff&style=plastic&logo=node.js&logoColor=339933 'Node.JS')](https://nodejs.org/)
+[![Lodash v4.17.21](https://img.shields.io/badge/Lodash%20v4.17.21-3492ff?labelColor=ffffff&style=plastic&logo=lodash 'Lodash')](https://lodash.com/)
+[![ Bulma v0.9.3](https://img.shields.io/badge/Bulma%20v0.9.3-00d1b2?labelColor=ffffff&style=plastic&logo=Bulma&logoColor=00d1b2)](https://bulma.io)
+[![ MySQL2 v2.3.3](https://img.shields.io/badge/MySQL2%20v2.3.3-00d1b2?labelColor=ffffff&style=plastic&logo=MySQL)](https://www.npmjs.com/package/mysql2)
+[![ Sequelize v6.17.0](https://img.shields.io/badge/Sequelize%20v6.17.0-52b0e7?labelColor=ffffff&style=plastic&logo=sequelize&logoColor=52b0e7)](https://sequelize.org/)
+[![Express v4.17.3](https://img.shields.io/badge/Express-v4.17.3-00e1ff?style=plastic)](http://expressjs.com/)
+[![BCrypt v5.0.1](https://img.shields.io/badge/BCrypt-v5.0.1-00e1ff?style=plastic)](https://www.npmjs.com/package/bcryptjs)
 ## Description
 
 - We wanted to build a resource for gardeners and houseplant enthusiasts to find and share information about their plants.

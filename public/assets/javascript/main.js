@@ -217,8 +217,12 @@ function setupPage() {
     tab.addEventListener('click', clickTab)
   })
   document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
-  document.querySelector("#chatwin").addEventListener("click",() => openModal(document.querySelector("#chat")));
-  document.querySelector("#addPlant").addEventListener("click",() => openModal(document.querySelector("#new-plant")));
+  const chatwin = document.querySelector("#chatwin")
+  const addPlant = document.querySelector("#addPlant")
+
+  if(chatwin) chatwin.addEventListener("click",() => openModal(document.querySelector("#chat")));
+  if(addPlant) addPlant.addEventListener("click",() => openModal(document.querySelector("#new-plant")));
+  
 }
 
 document.addEventListener('DOMContentLoaded', () => {

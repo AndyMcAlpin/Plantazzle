@@ -9,14 +9,12 @@
 [![BCrypt v5.0.1](https://img.shields.io/badge/BCrypt-v5.0.1-00e1ff?style=plastic)](https://www.npmjs.com/package/bcryptjs)
 ## Description
 
-- We wanted to build a resource for gardeners and houseplant enthusiasts to find and share information about their plants.
+- We wanted to build a resource for gardeners and houseplant enthusiasts to find and share information about their    plants.
   Currently this information is spread across many sites and is not always consistent so we wanted to bring it together into one place that is 
   user generated. It will also be a social hub for everyone interested by having chat to discuss problems and successes.
   We gained a bunch of knowledge about project scope and planning to use in future endeavours.
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -25,7 +23,43 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+- You will need to have Nodejs installed along with Node Package Manager(NPM)  You can 
+find some links below on how to install Node and NPM on Windows, Linux, and macOS.
+### Dependancies
+[![Node v16.14 ](https://img.shields.io/badge/Node%20v16.14-339933?labelColor=ffffff&style=plastic&logo=node.js&logoColor=339933 'NodeJS download page')](https://nodejs.org/en/download/)
+* [How to Install Node.js and NPM on Windows - phoenixNAP](https://phoenixnap.com/kb/install-node-js-npm-on-windows)
+* [How to install Node.js and npm on macOS - newline](https://www.newline.co/@Adele/how-to-install-nodejs-and-npm-on-macos--22782681)
+* [How To Install Node.js on Ubuntu 20.04 - DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
+### Clone
+Assuming you have Node and NPM you can clone this GitHub repo, go into the directory, 
+and install the package.json file with NPM.
+```bash
+git clone https://github.com/AndyMcAlpin/Plantazzle
+cd Plantazzle
+npm install
+```
+### Zip
+Another method is to download the zip file, unzip the contents to a specific directory 
+and install the package.json file.
+
+These commands that work on all three. (Windows, macOS, Linux) assuming they have 
+curl & tar.  Which newer version of Windows have.
+```bash
+curl -L -o gen-me-read.zip https://github.com/AndyMcAlpin/Plantazzle/archive/refs/heads/main.zip
+cd Plantazzle
+npm install
+```
+- add a .env file with DB_NAME for your database, DB_USER for your mysql username, and DB_PW for your password.
+    DB_NAME='example'
+    DB_USER='example'
+    DB_PW='example'
+
+- run 
+node seeds 
+to initialize seed info
+- run 
+node server.js 
+to start a server
 
 ## Usage
 
@@ -39,27 +73,30 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+- Andy McAlpin https://github.com/AndyMcAlpin
+- Jon Taylor https://github.com/DevJonTaylor
+- William Jardell https://github.com/PeauxBoi
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+MIT License
 
----
+Copyright (c) 2022 Andy McAlpin
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Badges
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

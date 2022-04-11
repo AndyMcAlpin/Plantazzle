@@ -36,7 +36,7 @@
               <strong>Home</strong>
             </a>
 
-            <a class="navbar-item">
+            <a id='searchwin' class="navbar-item">
               <strong>Search</strong>
             </a>
             {{#if loggedIn}}
@@ -48,13 +48,13 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                  <a class="navbar-item">
+                  <a id="chatwin" class="navbar-item">
                     Chat
                   </a>
-                  <a class="navbar-item">
+                  <a id="addPlant" class="navbar-item">
                     Add a plant
                   </a>
-                  <a class="navbar-item">
+                  <a id="addMyPlant" class="navbar-item">
                     Add my plant
                   </a>
                   <hr class="navbar-divider" />
@@ -100,7 +100,10 @@
     </div>
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
+      {{> modals/chat}}
+      {{> modals/modalNewPlantBasic}}
     {{/if}}
+      {{> modals/search}}
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
   </body>

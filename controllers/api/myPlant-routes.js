@@ -112,9 +112,7 @@ router.get('/:id', withAuth, (req, res) => {
 });
 
 // Add a new plant to a user's personal plant list
-router.post('/', 
-// withAuth, 
-(req, res) => {
+router.post('/', withAuth, (req, res) => {
     MyPlant.create({
         userId: req.session.user_id,
         // check this probably wrong, needs a FUNCTION

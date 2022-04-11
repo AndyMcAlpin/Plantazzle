@@ -212,6 +212,10 @@ function setupPage() {
   applyRandomBackgroundColor()
   applyModalScripts()
   renderAndApplyToModal()
+  document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
+  document.querySelector("#chatwin").addEventListener("click",() => openModal(document.querySelector("#chat")));
+  document.querySelector("#addPlant").addEventListener("click",() => openModal(document.querySelector("#new-plant-basic")));
+  document.querySelector("#searchwin").addEventListener("click",() => openModal(document.querySelector("#search-modal")));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -260,7 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
 
 function toggleNavbar() {
 const burger = document.querySelector('.navbar-burger')
@@ -275,3 +278,5 @@ if (burger.classList.contains('is-active') == true) {
 }
 
 };
+
+

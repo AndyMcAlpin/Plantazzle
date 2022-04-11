@@ -18,6 +18,60 @@ router.get('/', (req, res) => {
 });
 
 // Get's a selected plant's data
+router.get('/search', (req, res) => {
+    PlantBasic.findOne({
+        where: {
+            botanicalName: req.body.botanicalName
+        },
+        attributes: [
+            'id',
+            'botanicalName',
+            'commonName',
+            'family',
+            'origin',
+            'plantType',
+            'zone',
+            'growthRate',
+            'height',
+            'flowers',
+            'toxicity'
+        ],
+        include: [
+            {
+                model: PlantPicture,
+                attributes: ['id', 'filename', 'filePath']
+            },
+            {
+                model: PlantGrowing,
+                attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
+            },
+            {
+                model: PlantCare,
+                attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
+            },
+            // {
+            //     model: Comment,
+            //     attributes: [ 'id', 'title', 'commentText' ],
+            //     include: [{
+            //         model: User,
+            //         attributes: ['userName', 'zipCode']
+            //     }]
+            // }
+        ]
+    })
+    .then(dbPlantBasicData => {
+        if (!dbPlantBasicData) {
+            res.status(404).json({ message: 'No plant with this name, please try a different search!' });
+            return;
+        }
+        res.json(dbPlantBasicData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 router.get('/:id', (req, res) => {
     PlantBasic.findOne({
         where: {

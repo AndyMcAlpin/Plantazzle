@@ -4,8 +4,42 @@ function newFormHandler(event) {
   (async () => {
     const DA = getDataAsst()
     const [botanicalName, commonName] = await DA.getInputValue('#botanical-name', '#common-name')
-    const [family, origin, plantType, growthRate, height, flowers, toxicity] =
-      DA.getEmptyOrValue('#family', '#origin', '#plant-type', '#growth-rate', '#height', '#flowers', '#toxicity')
+    const [
+      family,
+      origin,
+      plantType,
+      growthRate,
+      height,
+      flowers,
+      toxicity,
+      light,
+      temperature,
+      humidity,
+      soil,
+      watering,
+      fertilizing,
+      leafCare,
+      repotting,
+      pruningShaping,
+    ] =
+      DA.getEmptyOrValue(
+        '#family',
+        '#origin',
+        '#plant-type',
+        '#growth-rate',
+        '#height',
+        '#flowers',
+        '#toxicity',
+        '#light',
+        '#temperature',
+        '#humidity',
+        '#soil',
+        '#watering',
+        '#fertilizing',
+        '#leafCare',
+        '#repotting',
+        '#pruningShaping',
+      )
     const file = document.querySelector('#plant-picture').files[0]
 
     const body = new FormData()
@@ -14,12 +48,20 @@ function newFormHandler(event) {
     body.append('commonName', commonName)
     body.append('family', family)
     body.append('origin', origin)
-    body.append('plantType', plantType)
-    body.append('growthRate', growthRate)
+    body.append('plantType', plant-type)
+    body.append('growthRate', growth-rate)
     body.append('height', height)
     body.append('flowers', flowers)
     body.append('toxicity', toxicity)
-
+    body.append('light', light)
+    body.append('temperature', temperature)
+    body.append('humidity', humidity)
+    body.append('soil', soil)
+    body.append('watering', watering)
+    body.append('fertilizing', fertilizing)
+    body.append('leafCare', leafCare)
+    body.append('repotting', repotting)
+    body.append('pruningShaping', pruningShaping)
 
     try {
       const response = await fetch('/api/plants/upload_photo', {
@@ -53,19 +95,4 @@ function updateFileName(event) {
 }
 
 document.querySelector('#plant-picture').addEventListener('change', updateFileName)
-document.querySelector('#new-plant-basic').addEventListener('submit', newFormHandler);
-
-for(const [selector, value] of Object.entries({
-  "#botanical-name": "qwe",
-  "#common-name": "asd",
-  "#family": "zzxc",
-  "#origin": "qwe",
-  "#plant-type": "asd",
-  "#zone": "qwez",
-  "#growth-rate": "asd",
-  "#height": "qwe",
-  "#flowers": "qwe",
-  "#toxicity": "qwe"
-})) {
-  document.querySelector(selector).value = value
-}
+document.querySelector('#new-plant').addEventListener('submit', newFormHandler)

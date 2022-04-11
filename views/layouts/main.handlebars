@@ -35,10 +35,6 @@
             <a class="navbar-item" href="/">
               <strong>Home</strong>
             </a>
-
-            <a class="navbar-item">
-              <strong>Search</strong>
-            </a>
             {{#if loggedIn}}
               <a class="navbar-item" href="/dashboard/"><strong>Dashboard</strong></a>
 
@@ -48,18 +44,11 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                  <a class="navbar-item">
+                  <a id="chatwin" class="navbar-item">
                     Chat
                   </a>
-                  <a class="navbar-item">
+                  <a id="addPlant" class="navbar-item">
                     Add a plant
-                  </a>
-                  <a class="navbar-item">
-                    Add my plant
-                  </a>
-                  <hr class="navbar-divider" />
-                  <a class="navbar-item">
-                    About
                   </a>
                 </div>
               </div>
@@ -100,9 +89,12 @@
     </div>
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
+      {{> modals/newPlant}}
+      {{> modals/chat}}
     {{/if}}
+      {{> modals/search}}
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
   </body>
-
+{{> modals/newPlant}}
 </html>

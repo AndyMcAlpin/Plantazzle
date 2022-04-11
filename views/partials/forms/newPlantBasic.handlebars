@@ -1,74 +1,64 @@
-{{#if loggedIn}}
-    {{#> form/setup formId="new-plant-basic"}}
-        {{#> form/field}}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="botanical-name"
-                    type="text"
-                    label="Botanical Name"
-                    colorClass="is-primary"
-                    isRequired=true
-            }}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="common-name"
-                    label="Common Name"
-                    isRequired=true
-            }}
-        {{/form/field}}
-        {{#> form/field}}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="family"
-                    label="Family"
-            }}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="origin"
-                    label="Origin"
-            }}
-        {{/form/field}}
-        {{#> form/field}}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="plant-type"
-                    label="Plant Type"
-            }}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="zone"
-                    label="Zone"
-            }}
-        {{/form/field}}
-        {{#> form/field}}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="growth-rate"
-                    label="Growth Rate"
-            }}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="height"
-                    label="Height"
-            }}
-        {{/form/field}}
-        {{#> form/field}}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="flowers"
-                    label="Flowers"
-            }}
-            {{> form/input
-                    column="is-6-desktop is-12-mobile"
-                    id="toxicity"
-                    label="Toxicity"
-            }}
-        {{/form/field}}
-        {{#> form/field}}
-            {{> form/file id="plant-picture" name="plantPicture" accept="image/*" required=true}}
-            <button class="button is-primary" type="submit">Submit</button>
-        {{/form/field}}
-    {{/form/setup}}
-
-    <script src="/js/add-post.js"></script>
-{{/if}}
+{{#> form/field}}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="botanical-name"
+            type="text"
+            label="Botanical Name"
+            colorClass="is-primary"
+            isRequired=true
+    }}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="common-name"
+            label="Common Name"
+            isRequired=true
+    }}
+{{/form/field}}
+{{#> form/field}}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="family"
+            label="Family"
+    }}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="origin"
+            label="Origin"
+    }}
+{{/form/field}}
+{{#> form/field}}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="plant-type"
+            label="Plant Type"
+    }}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="zone"
+            label="Zone"
+    }}
+{{/form/field}}
+{{#> form/field}}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="growth-rate"
+            label="Growth Rate"
+    }}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="height"
+            label="Height"
+    }}
+{{/form/field}}
+{{#> form/field}}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="flowers"
+            label="Flowers"
+    }}
+    {{> form/input
+            column="is-6-desktop is-12-mobile"
+            id="toxicity"
+            label="Toxicity"
+    }}
+{{/form/field}}

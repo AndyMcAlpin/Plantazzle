@@ -1,3 +1,5 @@
+// A list of attributes used by the models through extended model
+
 module.exports = {
   User: ['id', 'userName', 'password', 'fullName', 'firstName', 'lastName', 'email', 'zipCode'],
   Comment: [ 'id', 'title', 'commentText' ],

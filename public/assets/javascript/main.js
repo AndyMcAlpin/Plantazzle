@@ -167,7 +167,7 @@ function closeModal($el) {
 
 function closeAllModals() {
   (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-    if(!$modal.matches('[modal-esc="false"]'))
+    if($modal.matches('[modal-esc="false"]')) return
     closeModal($modal);
   });
 }
@@ -175,7 +175,7 @@ function closeAllModals() {
 function applyModalScripts() {
   // Add a click event on various child elements to close the parent modal
   document
-    .querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button')
+    .querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete')
     .forEach(element => {
       const modal = element.closest('.modal')
       if(!modal) return
@@ -212,6 +212,14 @@ function setupPage() {
   applyRandomBackgroundColor()
   applyModalScripts()
   renderAndApplyToModal()
+
+  document.querySelectorAll('.tabs li').forEach(tab => {
+    tab.addEventListener('click', clickTab)
+  })
+  document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
+  document.querySelector("#chatwin").addEventListener("click",() => openModal(document.querySelector("#chat")));
+  document.querySelector("#addPlant").addEventListener("click",() => openModal(document.querySelector("#new-plant")));
+  document.querySelector("#searchwin").addEventListener("click",() => openModal(document.querySelector("#search-modal")));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -260,18 +268,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
-
-function toggleNavbar() {
-const burger = document.querySelector('.navbar-burger')
-const basic = document.querySelector('#navbarBasic')
-
-if (burger.classList.contains('is-active') == true) {
-  burger.classList.remove('is-active')
-  basic.classList.remove('is-active')
-} else {
-  burger.classList.add('is-active')
-  basic.classList.add('is-active')
+function deactivateTabAndContainer(tab) {
+  const container = document.querySelector(tab.getAttribute('tab-selector'))
+  tab.classList.remove('is-active')
+  container.classList.remove('is-active')
+  container.classList.add('is-hidden')
 }
 
-};
+function activateTabAndContainer(tab) {
+  const container = document.querySelector(tab.getAttribute('tab-selector'))
+  tab.classList.add('is-active')
+  container.classList.remove('is-hidden')
+  container.classList.add('is-active')
+}
+
+function clickTab(event) {
+  const target = !event.target.matches('[tab-selector]')
+    ? event.target.closest('[tab-selector]')
+    : event.target
+  const tabs = target.closest('.tabs').querySelectorAll('li')
+  tabs.forEach(deactivateTabAndContainer)
+  activateTabAndContainer(target)
+}
+
+function toggleNavbar() {
+  const burger = document.querySelector('.navbar-burger')
+  const basic = document.querySelector('#navbarBasic')
+
+  if (burger.classList.contains('is-active')) {
+    burger.classList.remove('is-active')
+    basic.classList.remove('is-active')
+  } else {
+    burger.classList.add('is-active')
+    basic.classList.add('is-active')
+  }
+}

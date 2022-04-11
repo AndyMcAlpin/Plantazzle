@@ -194,7 +194,7 @@ router.post('/upload_photo', upload.single('file'), async function (req, res, ne
   } catch(err) {
     if(typeof err.errors === 'undefined') {
       console.error(err)
-      res.status(500).json({message: 'Internal Server Error', code: 500})
+      res.status(500).json({message: 'Internal Server Error', code: 500, reason: JSON.stringify(err)})
     } else {
       switch(err.errors[0].type) {
         case 'unique violation':

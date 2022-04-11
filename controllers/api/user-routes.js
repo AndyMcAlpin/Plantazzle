@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const { fn, col } = require('sequelize');
 
-// get all users
+// get all users, not currently used
 router.get('/', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
         });
 });
 
+// logs a user out
 router.post('/logout', (req, res) => {
     if (!req.session.loggedIn) {
         res.status(404).end();
@@ -23,6 +24,7 @@ router.post('/logout', (req, res) => {
         }); 
 });
 
+// Find a single user, not currently used
 router.get('/:id', (req, res) => {
     return User.findOne({
         attributes: { exclude: ['password'] },
@@ -62,6 +64,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
+// Create a new user
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
@@ -86,7 +89,7 @@ router.post('/', (req, res) => {
         });
 });
 
-
+// log a user in
 router.post('/login', (req, res) => {
     User.authenticate(req.body.username, req.body.password)
         .then(dbUserData => {

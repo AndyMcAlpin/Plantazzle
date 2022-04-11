@@ -1,3 +1,5 @@
+// These routes are not currently used, left for future development
+
 const router = require('express').Router();
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
 const sequelize = require('../../config/connection');

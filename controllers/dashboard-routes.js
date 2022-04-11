@@ -3,60 +3,7 @@ const sequelize = require('../config/connection');
 const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../models');
 const withAuth = require('../utils/auth');
 
-// get all myPlants for dashboard
-// router.get('/', withAuth, (req, res) => {
-//     MyPlant.findAll({
-//         where: {
-//             UserId: req.session.user_id
-//         },
-//         attributes: [
-//             'id',
-//             'UserId',
-//             'PlantBasicId'
-//         ],
-//         include: [
-//             {
-//                 model: PlantBasic,
-//                 attributes: [
-//                     'id',
-//                     'botanicalName',
-//                     'commonName',
-//                     'family',
-//                     'origin',
-//                     'plantType',
-//                     'zone',
-//                     'growthRate',
-//                     'height',
-//                     'flowers',
-//                     'toxicity'
-//                 ],
-//                 include: [
-//                     {
-//                         model: PlantPicture,
-//                         attributes: ['id', 'filename', 'filePath']
-//                     },
-//                     {
-//                         model: PlantGrowing,
-//                         attributes: [ 'light', 'temperature', 'humidity', 'soil', 'watering', 'fertilizing' ]
-//                     },
-//                     {
-//                         model: PlantCare,
-//                         attributes: [ 'leafCare', 'repotting', 'pruningShaping' ]
-//                     }
-//                 ]
-//             }
-//         ]
-//     })
-//         .then(dbMyPlantData => {
-//             const myPlantData = dbMyPlantData.map(myPlants => myPlants.get({ plain: true }));
-//             res.render('dashboard', { myPlantData, loggedIn: true });
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
-
+// Gets all of a user's plants for their dashboard
 router.get('/', (req, res) => {
     req.myPlantGetAll({ nested: true })
         .then(myPlant => {
@@ -77,7 +24,7 @@ router.get('/', (req, res) => {
       })
 });
 
-// get single myPlant data
+// get single myPlant data for modal
 router.get('/:id', withAuth, (req, res) => {
     MyPlant.findOne({
         where: {
@@ -140,7 +87,7 @@ router.get('/:id', withAuth, (req, res) => {
         });
 });
 
-// all of a users comments
+// all of a users comments, not currently used
 router.get('/:id', withAuth, (req, res) => {
     Comment.findByPk(req.params.id, {
         attributes: [

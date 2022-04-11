@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, Comment, Vote } = require('../../models');
+const { User, PlantBasic, MyPlant, PlantPicture, PlantGrowing, PlantCare, } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', 
-// withAuth, 
-(req, res) => {
+// Get all of a user's personal plants
+router.get('/', withAuth, (req, res) => {
     MyPlant.findAll({
         where: {
             UserId: req.session.user_id
@@ -54,9 +53,8 @@ router.get('/',
         });
 });
 
-router.get('/:id', 
-// withAuth, 
-(req, res) => {
+// Not currently used, get a user's individual plant
+router.get('/:id', withAuth, (req, res) => {
     MyPlant.findOne({
         where: {
             id: req.params.id,
@@ -113,6 +111,7 @@ router.get('/:id',
         });
 });
 
+// Add a new plant to a user's personal plant list
 router.post('/', 
 // withAuth, 
 (req, res) => {
@@ -128,6 +127,7 @@ router.post('/',
         })
 });
 
+// delete a plant from personal plant list, not currently used
 router.delete('/:id', 
 // withAuth, 
 (req, res) => {

@@ -7,7 +7,7 @@ function newSearch(event) {
       const requestOptions = {
         method: 'GET',
         headers: myHeaders,
-        body: JSON.stringify(searchQuery);,
+        body: JSON.stringify(searchQuery),
         redirect: 'follow'
       };
       

@@ -95,4 +95,4 @@ function updateFileName(event) {
 }
 
 document.querySelector('#plant-picture').addEventListener('change', updateFileName)
-document.querySelector('#new-plant-basic').addEventListener('submit', newFormHandler)
+document.querySelector('#new-plant').addEventListener('submit', newFormHandler)

@@ -167,7 +167,7 @@ function closeModal($el) {
 
 function closeAllModals() {
   (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-    if(!$modal.matches('[modal-esc="false"]'))
+    if($modal.matches('[modal-esc="false"]')) return
     closeModal($modal);
   });
 }
@@ -175,7 +175,7 @@ function closeAllModals() {
 function applyModalScripts() {
   // Add a click event on various child elements to close the parent modal
   document
-    .querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button')
+    .querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete')
     .forEach(element => {
       const modal = element.closest('.modal')
       if(!modal) return
@@ -267,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('orientationChange', lazyLoad)
   }
 })
-
 
 function deactivateTabAndContainer(tab) {
   const container = document.querySelector(tab.getAttribute('tab-selector'))

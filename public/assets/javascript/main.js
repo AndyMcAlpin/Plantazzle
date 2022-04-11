@@ -212,6 +212,10 @@ function setupPage() {
   applyRandomBackgroundColor()
   applyModalScripts()
   renderAndApplyToModal()
+
+  document.querySelectorAll('.tabs li').forEach(tab => {
+    tab.addEventListener('click', clickTab)
+  })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -262,16 +266,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.querySelector(".navbar-burger").addEventListener("click", toggleNavbar);
 
-function toggleNavbar() {
-const burger = document.querySelector('.navbar-burger')
-const basic = document.querySelector('#navbarBasic')
-
-if (burger.classList.contains('is-active') == true) {
-  burger.classList.remove('is-active')
-  basic.classList.remove('is-active')
-} else {
-  burger.classList.add('is-active')
-  basic.classList.add('is-active')
+function deactivateTabAndContainer(tab) {
+  const container = document.querySelector(tab.getAttribute('tab-selector'))
+  tab.classList.remove('is-active')
+  container.classList.remove('is-active')
+  container.classList.add('is-hidden')
 }
 
-};
+function activateTabAndContainer(tab) {
+  const container = document.querySelector(tab.getAttribute('tab-selector'))
+  tab.classList.add('is-active')
+  container.classList.remove('is-hidden')
+  container.classList.add('is-active')
+}
+
+function clickTab(event) {
+  const target = !event.target.matches('[tab-selector]')
+    ? event.target.closest('[tab-selector]')
+    : event.target
+  const tabs = target.closest('.tabs').querySelectorAll('li')
+  tabs.forEach(deactivateTabAndContainer)
+  activateTabAndContainer(target)
+}
+
+function toggleNavbar() {
+  const burger = document.querySelector('.navbar-burger')
+  const basic = document.querySelector('#navbarBasic')
+
+  if (burger.classList.contains('is-active')) {
+    burger.classList.remove('is-active')
+    basic.classList.remove('is-active')
+  } else {
+    burger.classList.add('is-active')
+    basic.classList.add('is-active')
+  }
+}

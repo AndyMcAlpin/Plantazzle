@@ -1,0 +1,32 @@
+{{#> modal/base id="new-plant"}}
+    {{#> modal/header title="New Plant" class="has-background-primary" title-class="has-text-white"}}
+        {{> modal/exitButton}}
+    {{/modal/header}}
+    {{#> modal/body }}
+        {{#> form/setup formId="new-plant"}}
+            {{#> tabs/group}}
+                {{> tabs/tab class="is-active" tab-selector="#plant-basic-tab" text="Plant Basic"}}
+                {{> tabs/tab class="" tab-selector="#plant-growing-tab" text="Plant Growing"}}
+                {{> tabs/tab class="" tab-selector="#plant-care-tab" text="Plant Care"}}
+            {{/tabs/group}}
+            {{#> tabs/containers}}
+                {{#> tabs/container is-active=true id="plant-basic-tab"}}
+                    {{> forms/newPlantBasic}}
+                {{/tabs/container}}
+                {{#> tabs/container id="plant-growing-tab"}}
+                    {{> forms/newPlantGrowing}}
+                {{/tabs/container}}
+                {{#> tabs/container id="plant-care-tab"}}
+                    {{> forms/newPlantCare}}
+                {{/tabs/container}}
+            {{/tabs/containers}}
+            {{#> form/field}}
+                {{> form/file id="plant-picture" name="plantPicture" accept="image/*" required=true}}
+                <button class="button is-primary" type="submit">Submit</button>
+            {{/form/field}}
+        {{/form/setup}}
+    {{/modal/body}}
+    {{#> modal/footer}}
+    {{/modal/footer}}
+{{/modal/base}}
+<script src="/js/add-post.js"></script>
